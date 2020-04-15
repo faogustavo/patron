@@ -1,4 +1,4 @@
 include(
-    "patron"
+    "patron",
+    "sample"
 )
-include("sample")

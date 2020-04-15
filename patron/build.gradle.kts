@@ -17,5 +17,6 @@ repositories {
 
 dependencies {
     implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8:1.3.61")
+    implementation("com.squareup:kotlinpoet:1.4.4")
     testCompile("junit:junit:4.12")
 }
