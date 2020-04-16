@@ -1,11 +1,18 @@
 import dev.patron.file.newFile
-import dev.patron.properties.Visibility
+import dev.patron.modifiers.Visibility
 
 fun main() {
     newFile(
         fileName = "HelloWorld",
         packageName = "com.hello.world"
     ) {
+        properties {
+            "LOREM_IPSUM".withType(String::class.java) {
+                isMutable = true
+                initWith = """"Dolor Sit Amet.""""
+            }
+        }
+
         newClass(name = "Greeter") {
             primaryConstructor {
                 parameters {
@@ -13,6 +20,14 @@ fun main() {
                         visibility = Visibility.PRIVATE
                         isProperty = true
                     }
+                }
+            }
+
+            properties {
+                "LOREM_IPSUM".withType(String::class.java) {
+                    isNullable = true
+                    isMutable = true
+                    initWith = """"Dolor Sit Amet.""""
                 }
             }
 

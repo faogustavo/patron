@@ -1,4 +1,4 @@
-package dev.patron.properties
+package dev.patron.modifiers
 
 import com.squareup.kotlinpoet.KModifier
 

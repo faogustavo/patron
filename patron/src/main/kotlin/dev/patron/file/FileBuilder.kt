@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.FileSpec
 import dev.patron.Builder
 import dev.patron.classes.ClassBuilder
 import dev.patron.functions.LocalFunctionBuilder
+import dev.patron.properties.LocalPropertyBuilder
 
 fun newFile(
     fileName: String,
@@ -33,6 +34,10 @@ class FileBuilder(protected val spec: FileSpec.Builder) : Builder<FileSpec>() {
         .apply(block)
         .build()
         .also { spec.addFunction(it) }
+
+    fun properties(
+        block: LocalPropertyBuilder.() -> Unit
+    ) = LocalPropertyBuilder(spec).apply(block)
 
     override fun build() = spec.build()
 }

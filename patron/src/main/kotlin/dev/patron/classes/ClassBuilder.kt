@@ -4,7 +4,8 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
 import dev.patron.functions.ConstructorBuilder
 import dev.patron.functions.FunctionBuilder
-import dev.patron.properties.Visibility
+import dev.patron.modifiers.Visibility
+import dev.patron.properties.ClassPropertyBuilder
 
 class ClassBuilder(
     className: String
@@ -22,6 +23,10 @@ class ClassBuilder(
             .apply(block)
             .build()
             .run(spec::primaryConstructor)
+    }
+
+    fun properties(block: ClassPropertyBuilder.() -> Unit) {
+        ClassPropertyBuilder(spec).apply(block)
     }
 
     fun function(name: String, block: FunctionBuilder.() -> Unit) {

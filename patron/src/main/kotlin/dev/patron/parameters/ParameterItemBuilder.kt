@@ -4,7 +4,8 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
-import dev.patron.properties.Visibility
+import dev.patron.modifiers.Visibility
+import dev.patron.properties.PropertyItemBuilder
 
 abstract class BaseParameterItemBuilder<T>(
     protected val spec: FunSpec.Builder,
@@ -87,9 +88,9 @@ class ConstructorParameterItemBuilder<T>(
     }
 
     private fun addPropertyToClass() {
-        PropertyBuilder(name, type).run {
-            this.visibility = this@ConstructorParameterItemBuilder.visibility
-            initialize()
+        PropertyItemBuilder(name, type).run {
+            visibility = this@ConstructorParameterItemBuilder.visibility
+            initWith = name
             classSpec.addProperty(build())
         }
     }

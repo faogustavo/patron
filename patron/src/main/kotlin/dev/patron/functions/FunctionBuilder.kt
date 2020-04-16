@@ -3,10 +3,10 @@ package dev.patron.functions
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
+import dev.patron.modifiers.Visibility
 import dev.patron.parameters.ConstructorParameterBuilder
 import dev.patron.parameters.FunctionParameterBuilder
 import dev.patron.parameters.LocalFunctionParameterBuilder
-import dev.patron.properties.Visibility
 import dev.patron.statement.StatementBuilder
 
 abstract class BaseFunctionBuilder(
