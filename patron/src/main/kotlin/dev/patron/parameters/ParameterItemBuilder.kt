@@ -6,11 +6,12 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
 import dev.patron.modifiers.Visibility
 import dev.patron.properties.PropertyItemBuilder
+import kotlin.reflect.KClass
 
-abstract class BaseParameterItemBuilder<T>(
+abstract class BaseParameterItemBuilder<T : Any>(
     protected val spec: FunSpec.Builder,
     protected val name: String,
-    protected val type: Class<T>
+    protected val type: KClass<T>
 ) : Builder<Unit>() {
     protected val modifiers: MutableList<KModifier> = mutableListOf()
 
@@ -19,17 +20,17 @@ abstract class BaseParameterItemBuilder<T>(
     }
 }
 
-abstract class BaseClassParameterItemBuilder<T>(
+abstract class BaseClassParameterItemBuilder<T : Any>(
     protected val classSpec: TypeSpec.Builder,
     spec: FunSpec.Builder,
     name: String,
-    type: Class<T>
+    type: KClass<T>
 ) : BaseParameterItemBuilder<T>(spec, name, type)
 
-class LocalFunctionParameterItemBuilder<T>(
+class LocalFunctionParameterItemBuilder<T : Any>(
     spec: FunSpec.Builder,
     name: String,
-    type: Class<T>
+    type: KClass<T>
 ) : BaseParameterItemBuilder<T>(spec, name, type) {
 
     var isVararg: Boolean = false
@@ -43,11 +44,11 @@ class LocalFunctionParameterItemBuilder<T>(
     }
 }
 
-class FunctionParameterItemBuilder<T>(
+class FunctionParameterItemBuilder<T : Any>(
     classSpec: TypeSpec.Builder,
     spec: FunSpec.Builder,
     name: String,
-    type: Class<T>
+    type: KClass<T>
 ) : BaseClassParameterItemBuilder<T>(classSpec, spec, name, type) {
 
     var isVararg: Boolean = false
@@ -61,17 +62,16 @@ class FunctionParameterItemBuilder<T>(
     }
 }
 
-class ConstructorParameterItemBuilder<T>(
+class ConstructorParameterItemBuilder<T : Any>(
     classSpec: TypeSpec.Builder,
     spec: FunSpec.Builder,
     name: String,
-    type: Class<T>
+    type: KClass<T>
 ) : BaseClassParameterItemBuilder<T>(classSpec, spec, name, type) {
 
     var visibility: Visibility = Visibility.PUBLIC
         set(value) {
             field = value
-            spec.addModifiers(visibility.modifier)
             modifiers.add(visibility.modifier)
         }
 

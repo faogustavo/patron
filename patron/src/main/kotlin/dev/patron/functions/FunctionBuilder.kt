@@ -8,6 +8,7 @@ import dev.patron.parameters.ConstructorParameterBuilder
 import dev.patron.parameters.FunctionParameterBuilder
 import dev.patron.parameters.LocalFunctionParameterBuilder
 import dev.patron.statement.StatementBuilder
+import kotlin.reflect.KClass
 
 abstract class BaseFunctionBuilder(
     protected val spec: FunSpec.Builder
@@ -19,7 +20,7 @@ abstract class BaseFunctionBuilder(
             spec.addModifiers(visibility.modifier)
         }
 
-    fun <T> returning(type: Class<T>) {
+    fun <T : Any> returning(type: KClass<T>) {
         spec.returns(type)
     }
 

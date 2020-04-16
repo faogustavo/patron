@@ -7,7 +7,7 @@ fun main() {
         packageName = "com.hello.world"
     ) {
         properties {
-            "LOREM_IPSUM".withType(String::class.java) {
+            "LOREM_IPSUM".withType(String::class) {
                 isMutable = true
                 initWith = """"Dolor Sit Amet.""""
             }
@@ -16,7 +16,7 @@ fun main() {
         newClass(name = "Greeter") {
             primaryConstructor {
                 parameters {
-                    "template".withType(String::class.java) {
+                    "template".withType(String::class) {
                         visibility = Visibility.PRIVATE
                         isProperty = true
                     }
@@ -24,7 +24,7 @@ fun main() {
             }
 
             properties {
-                "LOREM_IPSUM".withType(String::class.java) {
+                "LOREM_IPSUM".withType(String::class) {
                     isNullable = true
                     isMutable = true
                     initWith = """"Dolor Sit Amet.""""
@@ -33,7 +33,7 @@ fun main() {
 
             function("greet") {
                 parameters {
-                    "name" withType String::class.java
+                    "name" withType String::class
                 }
 
                 statements {
@@ -44,7 +44,7 @@ fun main() {
 
         newFunction("main") {
             parameters {
-                "args".withType(String::class.java) {
+                "args".withType(String::class) {
                     isVararg = true
                 }
             }
@@ -57,11 +57,11 @@ fun main() {
         }
 
         newFunction("increment") {
-            returning(Int::class.java)
+            returning(Int::class)
             statements {
                 add("var sum = 0")
                 controlFlow("for (i in 0 until 10)") {
-                    add("var += i")
+                    add("sum += i")
                 }
                 returnWith("sum")
             }

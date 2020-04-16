@@ -2,17 +2,18 @@ package dev.patron.parameters
 
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.TypeSpec
+import kotlin.reflect.KClass
 
 abstract class BaseParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
     protected val spec: FunSpec.Builder
 ) {
-    protected abstract fun <T> buildParameterItemBuilder(
+    protected abstract fun <T : Any> buildParameterItemBuilder(
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
+        type: KClass<T>
     ): PIB
 
-    infix fun <T> String.withType(type: Class<T>) {
+    infix fun <T : Any> String.withType(type: KClass<T>) {
         buildParameterItemBuilder(
             spec = spec,
             name = this,
@@ -20,7 +21,7 @@ abstract class BaseParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
         ).build()
     }
 
-    fun <T> String.withType(type: Class<T>, block: PIB.() -> Unit) {
+    fun <T : Any> String.withType(type: KClass<T>, block: PIB.() -> Unit) {
         buildParameterItemBuilder(
             spec = spec,
             name = this,
@@ -34,10 +35,10 @@ abstract class BaseClassParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
     spec: FunSpec.Builder
 ) : BaseParameterBuilder<PIB>(spec) {
 
-    override fun <T> buildParameterItemBuilder(
+    override fun <T : Any> buildParameterItemBuilder(
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
+        type: KClass<T>
     ): PIB = buildParameterItemBuilder(
         classSpec = classSpec,
         spec = spec,
@@ -45,11 +46,11 @@ abstract class BaseClassParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
         type = type
     )
 
-    abstract fun <T> buildParameterItemBuilder(
+    abstract fun <T : Any> buildParameterItemBuilder(
         classSpec: TypeSpec.Builder,
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
+        type: KClass<T>
     ): PIB
 }
 
@@ -57,10 +58,10 @@ class LocalFunctionParameterBuilder(
     spec: FunSpec.Builder
 ) : BaseParameterBuilder<LocalFunctionParameterItemBuilder<*>>(spec) {
 
-    override fun <T> buildParameterItemBuilder(
+    override fun <T : Any> buildParameterItemBuilder(
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
+        type: KClass<T>
     ): LocalFunctionParameterItemBuilder<T> =
         LocalFunctionParameterItemBuilder(
             spec = spec,
@@ -74,11 +75,11 @@ class FunctionParameterBuilder(
     spec: FunSpec.Builder
 ) : BaseClassParameterBuilder<FunctionParameterItemBuilder<*>>(classSpec, spec) {
 
-    override fun <T> buildParameterItemBuilder(
+    override fun <T : Any> buildParameterItemBuilder(
         classSpec: TypeSpec.Builder,
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
+        type: KClass<T>
     ): FunctionParameterItemBuilder<T> =
         FunctionParameterItemBuilder(
             classSpec = classSpec,
@@ -93,16 +94,15 @@ class ConstructorParameterBuilder(
     spec: FunSpec.Builder
 ) : BaseClassParameterBuilder<ConstructorParameterItemBuilder<*>>(classSpec, spec) {
 
-    override fun <T> buildParameterItemBuilder(
+    override fun <T : Any> buildParameterItemBuilder(
         classSpec: TypeSpec.Builder,
         spec: FunSpec.Builder,
         name: String,
-        type: Class<T>
-    ): ConstructorParameterItemBuilder<T> =
-        ConstructorParameterItemBuilder(
-            classSpec = classSpec,
-            spec = spec,
-            name = name,
-            type = type
-        )
+        type: KClass<T>
+    ) = ConstructorParameterItemBuilder(
+        classSpec = classSpec,
+        spec = spec,
+        name = name,
+        type = type
+    )
 }

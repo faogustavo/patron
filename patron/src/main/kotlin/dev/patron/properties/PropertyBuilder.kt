@@ -6,18 +6,19 @@ import com.squareup.kotlinpoet.TypeSpec
 import com.squareup.kotlinpoet.asTypeName
 import dev.patron.Builder
 import dev.patron.modifiers.Visibility
+import kotlin.reflect.KClass
 
 abstract class PropertyBuilder {
-    abstract fun <T> addProperty(builder: PropertyItemBuilder<T>)
+    abstract fun <T : Any> addProperty(builder: PropertyItemBuilder<T>)
 
-    infix fun <T> String.withType(type: Class<T>) {
+    infix fun <T : Any> String.withType(type: KClass<T>) {
         PropertyItemBuilder(
             name = this,
             type = type
         ).let(::addProperty)
     }
 
-    fun <T> String.withType(type: Class<T>, block: PropertyItemBuilder<T>.() -> Unit) {
+    fun <T : Any> String.withType(type: KClass<T>, block: PropertyItemBuilder<T>.() -> Unit) {
         PropertyItemBuilder(
             name = this,
             type = type
@@ -26,20 +27,20 @@ abstract class PropertyBuilder {
 }
 
 class LocalPropertyBuilder(protected val fileSpec: FileSpec.Builder) : PropertyBuilder() {
-    override fun <T> addProperty(builder: PropertyItemBuilder<T>) {
+    override fun <T : Any> addProperty(builder: PropertyItemBuilder<T>) {
         fileSpec.addProperty(builder.build())
     }
 }
 
 class ClassPropertyBuilder(protected val typeSpec: TypeSpec.Builder) : PropertyBuilder() {
-    override fun <T> addProperty(builder: PropertyItemBuilder<T>) {
+    override fun <T : Any> addProperty(builder: PropertyItemBuilder<T>) {
         typeSpec.addProperty(builder.build())
     }
 }
 
-class PropertyItemBuilder<T>(
+class PropertyItemBuilder<T : Any>(
     protected val name: String,
-    protected val type: Class<T>
+    protected val type: KClass<T>
 ) : Builder<PropertySpec>() {
 
     var isMutable: Boolean = false
