@@ -1,6 +1,7 @@
 package dev.patron.functions
 
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.TypeName
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
 import dev.patron.modifiers.Visibility
@@ -11,7 +12,6 @@ import dev.patron.statement.StatementBuilder
 import java.io.File
 import kotlin.reflect.KClass
 
-
 abstract class BaseFunctionBuilder(
     protected val spec: FunSpec.Builder
 ) : Builder<FunSpec>() {
@@ -21,10 +21,6 @@ abstract class BaseFunctionBuilder(
             field = value
             spec.addModifiers(visibility.modifier)
         }
-
-    fun <T : Any> returning(type: KClass<T>) {
-        spec.returns(type)
-    }
 
     fun statements(block: StatementBuilder.() -> Unit) {
         StatementBuilder(spec = spec).apply(block)
@@ -41,14 +37,23 @@ abstract class BaseFunctionBuilder(
     override fun build() = spec.build()
 }
 
+abstract class ReturnableFunctionBuilder(
+    spec: FunSpec.Builder
+) : BaseFunctionBuilder(spec) {
+
+    fun <T : Any> returning(type: KClass<T>) {
+        spec.returns(type)
+    }
+}
+
 abstract class ClassFunctionBuilder(
     protected val classSpec: TypeSpec.Builder,
     spec: FunSpec.Builder
-) : BaseFunctionBuilder(spec)
+) : ReturnableFunctionBuilder(spec)
 
 class LocalFunctionBuilder(
     name: String
-) : BaseFunctionBuilder(FunSpec.builder(name)) {
+) : ReturnableFunctionBuilder(FunSpec.builder(name)) {
 
     fun parameters(block: LocalFunctionParameterBuilder.() -> Unit) {
         LocalFunctionParameterBuilder(spec = spec).apply(block)
@@ -77,5 +82,25 @@ class ConstructorBuilder(
             classSpec = classSpec,
             spec = spec
         ).apply(block)
+    }
+}
+
+class GetterBuilder(private val type: TypeName) : BaseFunctionBuilder(FunSpec.getterBuilder()) {
+
+    override fun build(): FunSpec {
+        spec.returns(type)
+        return super.build()
+    }
+}
+
+class SetterBuilder(
+    private val type: TypeName
+) : BaseFunctionBuilder(FunSpec.setterBuilder()) {
+
+    var name: String = "field"
+
+    override fun build(): FunSpec {
+        spec.addParameter(name, type)
+        return super.build()
     }
 }

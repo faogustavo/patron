@@ -1,10 +1,9 @@
 package dev.patron.properties
 
-import com.squareup.kotlinpoet.FileSpec
-import com.squareup.kotlinpoet.PropertySpec
-import com.squareup.kotlinpoet.TypeSpec
-import com.squareup.kotlinpoet.asTypeName
+import com.squareup.kotlinpoet.*
 import dev.patron.Builder
+import dev.patron.functions.GetterBuilder
+import dev.patron.functions.SetterBuilder
 import dev.patron.modifiers.Visibility
 import kotlin.reflect.KClass
 
@@ -48,12 +47,28 @@ class PropertyItemBuilder<T : Any>(
     var initWith: String? = null
     var isNullable: Boolean = false
 
+    private val builtType: TypeName
+        get() = type.asTypeName().copy(nullable = isNullable)
+
+    private var getter: GetterBuilder? = null
+    private var setter: SetterBuilder? = null
+
+    fun getter(block: GetterBuilder.() -> Unit) {
+        getter = GetterBuilder(builtType).apply(block)
+    }
+
+    fun setter(block: SetterBuilder.() -> Unit) {
+        setter = SetterBuilder(builtType).apply(block)
+    }
+
     override fun build() = PropertySpec.builder(
         name = name,
-        type = type.asTypeName().copy(nullable = isNullable)
+        type = builtType
     ).apply {
         mutable(isMutable)
         initWith?.let { initializer(it) }
         addModifiers(visibility.modifier)
+        getter?.let { getter(it.build()) }
+        setter?.let { setter(it.build()) }
     }.build()
 }
