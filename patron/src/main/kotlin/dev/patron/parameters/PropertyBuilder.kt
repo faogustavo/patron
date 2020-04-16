@@ -1,6 +1,8 @@
-package dev.patron
+package dev.patron.parameters
 
 import com.squareup.kotlinpoet.PropertySpec
+import dev.patron.Builder
+import dev.patron.properties.Visibility
 
 class PropertyBuilder<T>(
     val name: String,

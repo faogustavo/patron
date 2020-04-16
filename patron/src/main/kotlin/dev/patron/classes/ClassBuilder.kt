@@ -1,7 +1,10 @@
-package dev.patron
+package dev.patron.classes
 
-import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.TypeSpec
+import dev.patron.Builder
+import dev.patron.functions.ConstructorBuilder
+import dev.patron.functions.FunctionBuilder
+import dev.patron.properties.Visibility
 
 class ClassBuilder(
     className: String
@@ -19,6 +22,13 @@ class ClassBuilder(
             .apply(block)
             .build()
             .run(spec::primaryConstructor)
+    }
+
+    fun function(name: String, block: FunctionBuilder.() -> Unit) {
+        FunctionBuilder(classSpec = spec, name = name)
+            .apply(block)
+            .build()
+            .run(spec::addFunction)
     }
 
     override fun build() = spec.build()
