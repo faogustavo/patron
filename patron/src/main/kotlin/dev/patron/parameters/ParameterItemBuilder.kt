@@ -1,23 +1,28 @@
 package dev.patron.parameters
 
-import com.squareup.kotlinpoet.FunSpec
-import com.squareup.kotlinpoet.KModifier
-import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.*
 import dev.patron.Builder
 import dev.patron.modifiers.Visibility
 import dev.patron.properties.PropertyItemBuilder
 import kotlin.reflect.KClass
 
 abstract class BaseParameterItemBuilder<T : Any>(
-    protected val spec: FunSpec.Builder,
+    protected val funSpec: FunSpec.Builder,
     protected val name: String,
     protected val type: KClass<T>
-) : Builder<Unit>() {
+) : Builder<ParameterSpec>() {
     protected val modifiers: MutableList<KModifier> = mutableListOf()
 
-    override fun build() {
-        spec.addParameter(name, type, modifiers)
-    }
+    var isNullable: Boolean = false
+    var initWith: String? = null
+
+    override fun build() = ParameterSpec.builder(
+        name = name,
+        type = type.asTypeName().copy(nullable = isNullable),
+        modifiers = modifiers
+    ).apply {
+        initWith?.let { this.defaultValue(it) }
+    }.build()
 }
 
 abstract class BaseClassParameterItemBuilder<T : Any>(
@@ -88,10 +93,10 @@ class ConstructorParameterItemBuilder<T : Any>(
     }
 
     private fun addPropertyToClass() {
-        PropertyItemBuilder(name, type).run {
+        PropertyItemBuilder(name, type).apply {
+            initWith = initWith ?: name
             visibility = this@ConstructorParameterItemBuilder.visibility
-            initWith = name
-            classSpec.addProperty(build())
-        }
+            isNullable = this@ConstructorParameterItemBuilder.isNullable
+        }.build().let(classSpec::addProperty)
     }
 }

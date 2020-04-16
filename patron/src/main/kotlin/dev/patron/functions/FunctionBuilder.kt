@@ -8,7 +8,9 @@ import dev.patron.parameters.ConstructorParameterBuilder
 import dev.patron.parameters.FunctionParameterBuilder
 import dev.patron.parameters.LocalFunctionParameterBuilder
 import dev.patron.statement.StatementBuilder
+import java.io.File
 import kotlin.reflect.KClass
+
 
 abstract class BaseFunctionBuilder(
     protected val spec: FunSpec.Builder
@@ -26,6 +28,14 @@ abstract class BaseFunctionBuilder(
 
     fun statements(block: StatementBuilder.() -> Unit) {
         StatementBuilder(spec = spec).apply(block)
+    }
+
+    fun codeFrom(code: String) {
+        spec.addCode(code)
+    }
+
+    fun codeFrom(file: File) {
+        spec.addCode(file.readText())
     }
 
     override fun build() = spec.build()

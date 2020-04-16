@@ -1,5 +1,6 @@
 package dev.patron.classes
 
+import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.Builder
 import dev.patron.functions.ConstructorBuilder
@@ -16,6 +17,14 @@ class ClassBuilder(
         set(value) {
             field = value
             spec.addModifiers(visibility.modifier)
+        }
+
+    var isData: Boolean = false
+        set(value) {
+            field = value
+            if (value) {
+                spec.addModifiers(KModifier.DATA)
+            }
         }
 
     fun primaryConstructor(block: ConstructorBuilder.() -> Unit) {

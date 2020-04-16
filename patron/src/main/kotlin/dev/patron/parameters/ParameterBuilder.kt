@@ -18,7 +18,7 @@ abstract class BaseParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
             spec = spec,
             name = this,
             type = type
-        ).build()
+        ).build().let(spec::addParameter)
     }
 
     fun <T : Any> String.withType(type: KClass<T>, block: PIB.() -> Unit) {
@@ -26,7 +26,7 @@ abstract class BaseParameterBuilder<PIB : BaseParameterItemBuilder<*>>(
             spec = spec,
             name = this,
             type = type
-        ).apply(block).build()
+        ).apply(block).build().let(spec::addParameter)
     }
 }
 
