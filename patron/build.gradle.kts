@@ -21,5 +21,5 @@ dependencies {
 
     testImplementation("junit:junit:4.12")
     testImplementation("io.strikt:strikt-core:0.24.0")
-    testImplementation("io.mockk:mockk:1.9")
+    testImplementation("io.mockk:mockk:1.9.3")
 }
