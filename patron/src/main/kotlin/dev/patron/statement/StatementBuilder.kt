@@ -46,5 +46,4 @@ class StatementBuilder(protected val spec: FunSpec.Builder) {
     private infix fun String.withBlockName(block: String?) = block?.let { "$this@$it" } ?: this
 
     private infix fun String.concatWithSpace(text: String) = "$this $text"
-
 }

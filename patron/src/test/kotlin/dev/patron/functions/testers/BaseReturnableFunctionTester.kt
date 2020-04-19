@@ -5,9 +5,9 @@ import com.squareup.kotlinpoet.asTypeName
 import dev.patron.functions.ReturnableFunctionBuilder
 import io.mockk.every
 import io.mockk.verify
+import kotlin.reflect.KClass
 import org.junit.Before
 import org.junit.Test
-import kotlin.reflect.KClass
 
 abstract class BaseReturnableFunctionTester<T : ReturnableFunctionBuilder> : BaseFunctionTester<T>() {
 
@@ -34,5 +34,4 @@ abstract class BaseReturnableFunctionTester<T : ReturnableFunctionBuilder> : Bas
 
         verify(exactly = 1) { spec.returns(className) }
     }
-
 }

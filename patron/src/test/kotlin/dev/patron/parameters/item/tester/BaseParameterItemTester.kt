@@ -5,7 +5,11 @@ import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.ParameterSpec
 import com.squareup.kotlinpoet.TypeName
 import dev.patron.parameters.item.BaseParameterItemBuilder
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkObject
+import io.mockk.slot
+import io.mockk.verify
 import org.junit.Before
 import org.junit.Test
 import strikt.api.expectThat

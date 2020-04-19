@@ -146,4 +146,3 @@ open class StatementBuilderTest {
         verify { spec.addStatement("return@test %P", "value") }
     }
 }
-

@@ -34,5 +34,4 @@ class LocalFunctionBuilderTest : BaseReturnableFunctionTester<LocalFunctionBuild
         expectThat(hasFunBeenCalled)
             .isTrue()
     }
-
 }

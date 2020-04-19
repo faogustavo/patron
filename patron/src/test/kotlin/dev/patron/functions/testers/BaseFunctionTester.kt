@@ -4,13 +4,17 @@ import com.squareup.kotlinpoet.FunSpec
 import dev.patron.functions.BaseFunctionBuilder
 import dev.patron.modifiers.Visibility
 import dev.patron.statement.StatementBuilder
-import io.mockk.*
+import io.mockk.every
+import io.mockk.mockk
+import io.mockk.mockkConstructor
+import io.mockk.mockkStatic
+import io.mockk.verify
+import java.io.File
 import org.junit.Before
 import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
 import strikt.assertions.isTrue
-import java.io.File
 
 abstract class BaseFunctionTester<T : BaseFunctionBuilder> {
 
