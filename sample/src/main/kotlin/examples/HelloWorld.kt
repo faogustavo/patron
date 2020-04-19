@@ -14,6 +14,7 @@ fun main() {
                     "template".withType(String::class) {
                         visibility = Visibility.PRIVATE
                         isProperty = true
+                        initWith = "\"Hello %%s\""
                     }
                 }
             }

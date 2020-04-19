@@ -23,11 +23,6 @@ class ConstructorParameterItemBuilder(
     ) : this(classSpec, spec, name, type.asClassName())
 
     var visibility: Visibility = Visibility.PUBLIC
-        set(value) {
-            field = value
-            modifiers.add(visibility.modifier)
-        }
-
     var isProperty: Boolean = false
         set(value) {
             field = value
@@ -36,13 +31,9 @@ class ConstructorParameterItemBuilder(
             }
         }
 
-    operator fun invoke(block: BaseParameterItemBuilder.() -> Unit) {
-        apply(block)
-    }
-
     private fun addPropertyToClass() {
         PropertyItemBuilder(name, type).apply {
-            initWith = initWith ?: name
+            initWith = this@ConstructorParameterItemBuilder.initWith ?: name
             visibility = this@ConstructorParameterItemBuilder.visibility
             isNullable = this@ConstructorParameterItemBuilder.isNullable
         }.build().let(classSpec::addProperty)

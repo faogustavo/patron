@@ -21,10 +21,8 @@ class LocalFunctionParameterItemBuilder(
     var isVararg: Boolean = false
         set(value) {
             field = value
-            modifiers.add(KModifier.VARARG)
+            if (field) {
+                modifiers.add(KModifier.VARARG)
+            }
         }
-
-    fun invoke(block: LocalFunctionParameterItemBuilder.() -> Unit) {
-        apply(block)
-    }
 }

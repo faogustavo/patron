@@ -15,7 +15,6 @@ class GetterBuilderTest : BaseFunctionTester<GetterBuilder>() {
         super.setUp()
 
         mockkObject(FunSpec)
-        mockkObject(FunSpec)
 
         every { FunSpec.getterBuilder() } returns spec
     }

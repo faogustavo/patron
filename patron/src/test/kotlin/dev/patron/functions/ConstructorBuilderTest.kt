@@ -22,7 +22,7 @@ internal class ConstructorBuilderTest : BaseReturnableFunctionTester<Constructor
         super.setUp()
 
         mockkObject(FunSpec)
-        mockkObject(FunSpec)
+        mockkObject(FunSpec.Companion)
 
         every { FunSpec.constructorBuilder() } returns spec
     }

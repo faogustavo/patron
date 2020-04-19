@@ -1,4 +1,5 @@
 include(
     "patron",
-    "sample"
+    "sample",
+    "strikt-poet"
 )
