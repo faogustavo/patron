@@ -1,6 +1,7 @@
 package dev.patron.functions
 
 import com.squareup.kotlinpoet.FunSpec
+import dev.patron.functions.testers.BaseReturnableFunctionTester
 import dev.patron.parameters.LocalFunctionParameterBuilder
 import io.mockk.every
 import io.mockk.mockkObject
@@ -9,11 +10,9 @@ import org.junit.Test
 import strikt.api.expectThat
 import strikt.assertions.isTrue
 
-class LocalFunctionBuilderTest : ReturnableFunctionBuilderTest() {
+class LocalFunctionBuilderTest : BaseReturnableFunctionTester<LocalFunctionBuilder>() {
 
-    private val localFunSubject by lazy { LocalFunctionBuilder("testFun") }
-    override val subject
-        get() = localFunSubject
+    override val subject by lazy { LocalFunctionBuilder("testFun") }
 
     @Before
     override fun setUp() {
@@ -30,7 +29,7 @@ class LocalFunctionBuilderTest : ReturnableFunctionBuilderTest() {
         var hasFunBeenCalled = false
         val block: LocalFunctionParameterBuilder.() -> Unit = { hasFunBeenCalled = true }
 
-        localFunSubject.parameters(block)
+        subject.parameters(block)
 
         expectThat(hasFunBeenCalled)
             .isTrue()
