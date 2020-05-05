@@ -30,7 +30,7 @@ class SetterBuilderTest : BaseFunctionTester<SetterBuilder>() {
     fun build_addParameterToSpec() {
         subject.build()
 
-        verify(exactly = 1) { spec.addParameter("field", type) }
+        verify(exactly = 1) { spec.addParameter("value", type) }
     }
 
     @Test

@@ -1,0 +1,11 @@
+package com.hello.world
+
+import kotlin.String
+
+private var privateField: String? = null
+
+internal var publicField: String?
+  get() = privateField
+  set(value) {
+    privateField = value
+  }

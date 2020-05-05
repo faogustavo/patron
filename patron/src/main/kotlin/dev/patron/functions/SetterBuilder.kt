@@ -7,7 +7,7 @@ class SetterBuilder(
     private val type: TypeName
 ) : BaseFunctionBuilder(FunSpec.setterBuilder()) {
 
-    var name: String = "field"
+    var name: String = "value"
 
     override fun build(): FunSpec {
         spec.addParameter(name, type)

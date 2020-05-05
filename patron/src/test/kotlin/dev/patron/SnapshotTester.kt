@@ -2,10 +2,10 @@ package dev.patron
 
 import io.mockk.clearAllMocks
 import io.mockk.unmockkAll
-import java.io.File
 import org.junit.Before
 import strikt.api.expectThat
 import strikt.assertions.isEqualTo
+import java.io.File
 
 abstract class SnapshotTester(private val resourcesDir: String? = null) {
 
@@ -30,16 +30,22 @@ abstract class SnapshotTester(private val resourcesDir: String? = null) {
             .isEqualTo(result)
     }
 
-    private fun getSnapshotExpectedResult(metaData: MetaData): String {
-        val path = listOf(
+    fun getFileFromResources(fileName: String, vararg path: String): File {
+        val basePath = listOf(
             "src",
             "test",
-            "resources",
-            resourcesDir ?: metadata.className.packageAsPath,
-            metaData.methodName
-        ).filterEmpty().joinToString(File.separator) + ".snap"
+            "resources"
+        )
 
-        val file = File(path)
+        val completePath = basePath + path.toList() + fileName
+        val pathString = completePath.joinToString(File.separator)
+
+        return File(pathString)
+    }
+
+    private fun getSnapshotExpectedResult(metaData: MetaData): String {
+        val file = getFileFromResources(metaData.methodName.snap, resourcesDir ?: metadata.className.packageAsPath)
+
         check(file.exists()) {
             "Failed to load resource for this test. Check if you created the snapshot file at ${file.path}"
         }
@@ -50,6 +56,9 @@ abstract class SnapshotTester(private val resourcesDir: String? = null) {
     private fun List<String>.filterEmpty() = filter { !it.isEmpty() }
 
     private fun String.normalizeLineEndingChar() = lines().joinToString("\n")
+
+    private val String.snap
+        get() = "$this.snap"
 
     private val String.packageAsPath
         get() = replace('.', File.separatorChar)

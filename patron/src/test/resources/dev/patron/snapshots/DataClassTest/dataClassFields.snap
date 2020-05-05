@@ -1,0 +1,10 @@
+package com.hello.world
+
+import kotlin.Int
+import kotlin.String
+
+data class Person(
+  val name: String,
+  val mail: String? = null,
+  val id: Int = System.currentTimeMillis()
+)
