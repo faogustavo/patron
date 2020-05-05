@@ -1,0 +1,9 @@
+package com.hello.world
+
+enum class ViewVisibility {
+  Visible,
+
+  Invisible,
+
+  Gone
+}

@@ -20,7 +20,6 @@ class SetterBuilderTest : BaseFunctionTester<SetterBuilder>() {
         super.setUp()
 
         mockkObject(FunSpec)
-        mockkObject(FunSpec.Companion)
 
         every { FunSpec.setterBuilder() } returns spec
         every { spec.addParameter(any(), any<TypeName>()) } returns spec

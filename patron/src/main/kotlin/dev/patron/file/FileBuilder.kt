@@ -3,6 +3,7 @@ package dev.patron.file
 import com.squareup.kotlinpoet.FileSpec
 import dev.patron.Builder
 import dev.patron.classes.ClassBuilder
+import dev.patron.enum.EnumBuilder
 import dev.patron.functions.LocalFunctionBuilder
 import dev.patron.properties.LocalPropertyBuilder
 
@@ -38,6 +39,14 @@ class FileBuilder(protected val spec: FileSpec.Builder) : Builder<FileSpec>() {
     fun properties(
         block: LocalPropertyBuilder.() -> Unit
     ) = LocalPropertyBuilder(spec).apply(block)
+
+    fun enum(
+        name: String,
+        block: EnumBuilder.() -> Unit
+    ) = EnumBuilder(name)
+        .apply(block)
+        .build()
+        .also { spec.addType(it) }
 
     override fun build() = spec.build()
 }

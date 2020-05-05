@@ -26,7 +26,7 @@ class StatementBuilder(protected val spec: FunSpec.Builder) {
 
     fun returnWith(valueStatement: String, blockName: String? = null) {
         val returnStatement = RETURN_KEYWORD withBlockName blockName
-        add(returnStatement concatWithSpace valueStatement)
+        add("$returnStatement $valueStatement")
     }
 
     fun returnWithString(valueStatement: String, blockName: String? = null) {
@@ -44,6 +44,4 @@ class StatementBuilder(protected val spec: FunSpec.Builder) {
     }
 
     private infix fun String.withBlockName(block: String?) = block?.let { "$this@$it" } ?: this
-
-    private infix fun String.concatWithSpace(text: String) = "$this $text"
 }

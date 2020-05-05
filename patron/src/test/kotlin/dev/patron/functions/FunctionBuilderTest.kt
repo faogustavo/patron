@@ -22,7 +22,6 @@ internal class FunctionBuilderTest : BaseReturnableFunctionTester<FunctionBuilde
         super.setUp()
 
         mockkObject(FunSpec)
-        mockkObject(FunSpec)
 
         every { FunSpec.builder(any()) } returns spec
     }

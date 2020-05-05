@@ -1,0 +1,87 @@
+# Features
+
+- [ ] Use poet types
+    - [ ] %S
+    - [ ] %T
+    - [ ] %M
+    - [ ] %N
+    - [ ] %L
+- [ ] Files
+    - [X] Define Package
+    - [X] Add Class
+    - [X] Add Function
+    - [X] Add Properties/Variables
+    - [X] Add Enums
+    - [ ] Add Objects
+- [ ] Classes
+    - [X] Visibility
+    - [ ] Constructors
+        - [X] Primary Constructor
+        - [ ] Constructor overload
+        - [X] Constructor property
+    - [ ] Properties
+    - [ ] Modifiers
+        - [X] Data classes
+        - [ ]
+- [ ] Functions
+    - [X] Visibility
+    - [ ] Parameters
+        - [X] Visibility
+        - [X] Simple parameter
+        - [X] Default value
+        - [X] Nullable parameters
+        - [X] Varargs
+        - [ ] Named Arguments (call site)
+    - [X] Return
+    - [ ] Extension Functions
+    - [ ] Inline modifier
+    - [ ] Add Code
+        - [X] Manually
+        - [X] From file
+        - [ ] From CodeBuilder
+- [ ] Code
+    - [X] Add Statement
+    - [X] Return Statement
+        - [X] Simple return
+        - [X] Return specific block
+    - [X] Control flow
+    - [ ] CodeBuilder
+- [X] Properties
+    - [X] Define
+    - [X] Val/Var
+    - [X] Visibility
+    - [X] Initial value
+    - [X] Nullability
+    - [X] Getter
+    - [X] Setter
+- [ ] Objects
+    - [ ] Simple objects
+    - [ ] Companion objects
+- [ ] Enum
+    - [X] Visibility
+    - [X] Basic
+    - [ ] With attributes
+    - [ ] With functions
+- [ ] Interfaces
+- [ ] Anonymous classes
+- [ ] Annotating
+    - [ ] File
+    - [ ] Classes
+    - [ ] Functions
+    - [ ] Parameters
+    - [ ] Returns
+- [ ] Type Alias
+- [ ] Callable references
+    - [ ] Class constructor
+    - [ ] Functions
+    - [ ] Properties
+    
+    
+# Technical debt    
+- [ ] Write more tests
+- [ ] Configure github actions
+- [ ] Add deployment scripts
+- [ ] Create documentation
+- [ ] Check .gitignore
+- [ ] Created Readme + Contributing
+- [ ] Configure KTLint

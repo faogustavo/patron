@@ -19,7 +19,6 @@ class LocalFunctionBuilderTest : BaseReturnableFunctionTester<LocalFunctionBuild
         super.setUp()
 
         mockkObject(FunSpec)
-        mockkObject(FunSpec)
 
         every { FunSpec.builder(any()) } returns spec
     }
