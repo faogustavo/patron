@@ -27,6 +27,8 @@ class ClassBuilder(
             }
         }
 
+    
+
     fun primaryConstructor(block: ConstructorBuilder.() -> Unit) {
         ConstructorBuilder(classSpec = spec)
             .apply(block)
@@ -34,9 +36,13 @@ class ClassBuilder(
             .run(spec::primaryConstructor)
     }
 
+
+
     fun properties(block: ClassPropertyBuilder.() -> Unit) {
         ClassPropertyBuilder(spec).apply(block)
     }
+
+
 
     fun function(name: String, block: FunctionBuilder.() -> Unit) {
         FunctionBuilder(classSpec = spec, name = name)
