@@ -79,9 +79,9 @@
     
 # Technical debt    
 - [ ] Write more tests
-- [ ] Configure github actions
+- [X] Configure github actions
 - [ ] Add deployment scripts
 - [ ] Create documentation
 - [ ] Check .gitignore
 - [ ] Created Readme + Contributing
-- [ ] Configure KTLint
+- [X] Configure KTLint
