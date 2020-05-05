@@ -13,7 +13,7 @@ class ClassBuilder(
 ) : Builder<TypeSpec>() {
     protected val spec: TypeSpec.Builder = TypeSpec.classBuilder(className)
 
-    var visibility: Visibility = Visibility.PUBLIC
+    var visibility :  Visibility = Visibility.PUBLIC
         set(value) {
             field = value
             spec.addModifiers(visibility.modifier)
@@ -27,7 +27,7 @@ class ClassBuilder(
             }
         }
 
-    
+
 
     fun primaryConstructor(block: ConstructorBuilder.() -> Unit) {
         ConstructorBuilder(classSpec = spec)
