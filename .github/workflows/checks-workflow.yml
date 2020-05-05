@@ -1,7 +1,7 @@
 name: Test & Lint
 on: [pull_request]
 jobs:
-  JUnit:
+  Checks:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
@@ -27,6 +27,7 @@ jobs:
         uses: faogustavo/action-ktlint@master
         with:
           github_token: ${{ secrets.github_token }}
+          fail_on_error: true
           reporter: github-pr-review
 
       - name: Sync Gradle
