@@ -1,0 +1,7 @@
+package com.hello.world
+
+import foo.bar.Lorem
+import kotlin.Int
+
+fun helloWorld(@Lorem(someKey = "someValue") random: Int) {
+}

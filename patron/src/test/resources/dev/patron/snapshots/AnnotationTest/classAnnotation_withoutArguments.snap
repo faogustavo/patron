@@ -1,0 +1,9 @@
+package com.hello.world
+
+import com.squareup.moshi.JsonClass
+import kotlin.String
+
+@JsonClass
+data class Person(
+  val name: String
+)

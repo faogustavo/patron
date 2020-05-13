@@ -1,11 +1,16 @@
 package dev.patron.file
 
+import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FileSpec
+import com.squareup.kotlinpoet.asClassName
 import dev.patron.Builder
+import dev.patron.annotation.AnnotationBuilder
 import dev.patron.classes.ClassBuilder
 import dev.patron.enum.EnumBuilder
 import dev.patron.functions.LocalFunctionBuilder
 import dev.patron.properties.LocalPropertyBuilder
+import kotlin.reflect.KClass
 
 fun newFile(
     fileName: String,
@@ -18,7 +23,7 @@ fun newFile(
     )
 ).apply(block).build()
 
-class FileBuilder(protected val spec: FileSpec.Builder) : Builder<FileSpec>() {
+open class FileBuilder(protected val spec: FileSpec.Builder) : Builder<FileSpec>() {
 
     fun newClass(
         name: String,
@@ -47,6 +52,19 @@ class FileBuilder(protected val spec: FileSpec.Builder) : Builder<FileSpec>() {
         .apply(block)
         .build()
         .also { spec.addType(it) }
+
+    fun annotateWith(
+        clazz: KClass<*>,
+        block: AnnotationBuilder.() -> Unit = {}
+    ) = annotateWith(clazz.asClassName(), block)
+
+    fun annotateWith(
+        className: ClassName,
+        block: AnnotationBuilder.() -> Unit = {}
+    ) = AnnotationBuilder(className, AnnotationSpec.UseSiteTarget.FILE)
+        .apply(block)
+        .build()
+        .also { spec.addAnnotation(it) }
 
     override fun build() = spec.build()
 }

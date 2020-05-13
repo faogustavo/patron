@@ -1,0 +1,10 @@
+package com.hello.world
+
+import java.io.IOException
+import org.junit.Test
+
+class TestClass {
+  @Test(expected = IOException::class)
+  fun helloWorld() {
+  }
+}

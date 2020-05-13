@@ -1,0 +1,12 @@
+package com.hello.world
+
+import com.squareup.moshi.JsonClass
+
+@JsonClass
+enum class ViewVisibility {
+  Visible,
+
+  Invisible,
+
+  Gone
+}

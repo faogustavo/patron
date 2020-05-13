@@ -1,12 +1,16 @@
 package dev.patron.classes
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
+import com.squareup.kotlinpoet.asClassName
 import dev.patron.Builder
+import dev.patron.annotation.AnnotationBuilder
 import dev.patron.functions.ConstructorBuilder
 import dev.patron.functions.FunctionBuilder
 import dev.patron.modifiers.Visibility
 import dev.patron.properties.ClassPropertyBuilder
+import kotlin.reflect.KClass
 
 class ClassBuilder(
     className: String
@@ -44,6 +48,19 @@ class ClassBuilder(
             .build()
             .run(spec::addFunction)
     }
+
+    fun annotateWith(
+        clazz: KClass<*>,
+        block: AnnotationBuilder.() -> Unit = {}
+    ) = annotateWith(clazz.asClassName(), block)
+
+    fun annotateWith(
+        className: ClassName,
+        block: AnnotationBuilder.() -> Unit = {}
+    ) = AnnotationBuilder(className)
+        .apply(block)
+        .build()
+        .also { spec.addAnnotation(it) }
 
     override fun build() = spec.build()
 }

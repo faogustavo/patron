@@ -1,0 +1,7 @@
+package com.hello.world
+
+import android.support.annotation.StringRes
+import kotlin.Int
+
+fun helloWorld(@StringRes random: Int = R.string.hello_world) {
+}

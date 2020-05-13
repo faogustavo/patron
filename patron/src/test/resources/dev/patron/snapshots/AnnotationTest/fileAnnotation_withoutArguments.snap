@@ -1,0 +1,6 @@
+@file:JvmName
+
+package com.hello.world
+
+import kotlin.jvm.JvmName
+

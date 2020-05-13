@@ -6,6 +6,7 @@
     - [ ] %M
     - [ ] %N
     - [ ] %L
+    - [ ] %B (From project to work with booleans)
 - [ ] Files
     - [X] Define Package
     - [X] Add Class
@@ -65,11 +66,14 @@
 - [ ] Interfaces
 - [ ] Anonymous classes
 - [ ] Annotating
-    - [ ] File
-    - [ ] Classes
-    - [ ] Functions
-    - [ ] Parameters
-    - [ ] Returns
+    - [X] File
+    - [X] Classes
+    - [X] Functions
+    - [ ] Property (Field/Get/Set)
+    - [X] Parameters
+    - [ ] Enum
+        - [X] Enum Class
+        - [ ] Property
 - [ ] Type Alias
 - [ ] Callable references
     - [ ] Class constructor
@@ -85,3 +89,5 @@
 - [ ] Check .gitignore
 - [ ] Created Readme + Contributing
 - [X] Configure KTLint
+- [ ] Think in a way to reduce boilerplate
+    - Visibility and annotation logic is duplicated on every class it is needed.

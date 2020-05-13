@@ -1,0 +1,9 @@
+package com.hello.world
+
+import org.junit.Test
+
+class TestClass {
+  @Test
+  fun helloWorld() {
+  }
+}
