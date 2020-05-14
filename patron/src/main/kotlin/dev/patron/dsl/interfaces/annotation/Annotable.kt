@@ -1,7 +1,7 @@
 package dev.patron.dsl.interfaces.annotation
 
-import dev.patron.dsl.specs.annotation.AnnotationBuilder
+import com.squareup.kotlinpoet.AnnotationSpec
 
 interface Annotable {
-    fun annotateWith(builder: AnnotationBuilder)
+    fun annotateWith(annotationSpec: AnnotationSpec)
 }

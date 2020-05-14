@@ -17,5 +17,6 @@ open class PatronAnnotator(private val annotable: Annotable) : Annotator {
     ) = AnnotationBuilder
         .withSpec(type, site)
         .apply(block)
+        .build()
         .let(annotable::annotateWith)
 }

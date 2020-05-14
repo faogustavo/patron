@@ -16,7 +16,7 @@ fun main() {
             "name = $STRING_MARKER" withValue "PatronFunctions"
         }
 
-        function("main") {
+        newFunction("main") {
             visibility = Visibility.PRIVATE
 
             returnType = String::class.asClassName()

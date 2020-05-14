@@ -7,10 +7,10 @@ import dev.patron.dsl.specs.function.FunctionBuilderBlock
 import dev.patron.dsl.specs.function.PatronFunctionSpec
 
 class PatronFunctionReceiver(private val receivableFunction: ReceivableFunction) : FunctionReceiver {
-    override fun function(name: String, block: FunctionBuilderBlock) {
+    override fun newFunction(name: String, block: FunctionBuilderBlock) {
         FunctionBuilder(PatronFunctionSpec.withSpec(name))
             .apply(block)
             .build()
-            .let { receivableFunction.addFunction(it) }
+            .let(receivableFunction::addFunction)
     }
 }

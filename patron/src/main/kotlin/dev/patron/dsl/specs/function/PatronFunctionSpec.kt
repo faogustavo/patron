@@ -1,5 +1,6 @@
 package dev.patron.dsl.specs.function
 
+import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.TypeName
@@ -7,7 +8,6 @@ import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.returning.Returnable
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
-import dev.patron.dsl.specs.annotation.AnnotationBuilder
 import dev.patron.modifiers.Visibility
 
 class PatronFunctionSpec(protected val specBuilder: FunSpec.Builder) :
@@ -19,8 +19,8 @@ class PatronFunctionSpec(protected val specBuilder: FunSpec.Builder) :
         specBuilder.addModifiers(newVisibility.modifier)
     }
 
-    override fun annotateWith(builder: AnnotationBuilder) {
-        specBuilder.addAnnotation(builder.build())
+    override fun annotateWith(annotationSpec: AnnotationSpec) {
+        specBuilder.addAnnotation(annotationSpec)
     }
 
     override fun withReturnType(typeName: TypeName) {

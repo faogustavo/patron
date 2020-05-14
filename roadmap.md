@@ -8,13 +8,14 @@
     - [X] %L
 - [ ] Files
     - [X] Define Package
-    - [ ] Add Class
+    - [X] Add Class
     - [X] Add Function
     - [ ] Add Properties/Variables
     - [ ] Add Enums
     - [ ] Add Objects
 - [ ] Classes
-    - [ ] Visibility
+    - [X] Visibility
+    - [X] Functions
     - [ ] Constructors
         - [ ] Primary Constructor
         - [ ] Constructor overload
@@ -64,7 +65,7 @@
 - [ ] Anonymous classes
 - [ ] Annotating
     - [X] File
-    - [ ] Classes
+    - [X] Classes
     - [X] Functions
     - [ ] Property (Field/Get/Set)
     - [ ] Parameters
