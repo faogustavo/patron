@@ -1,6 +1,8 @@
 package dev.patron.dsl.specs.file
 
-typealias FileBuilderBlock = FileBuilder.() -> Unit
+import dev.patron.dsl.specs.Block
+
+typealias FileBuilderBlock = Block<FileBuilder>
 
 fun newFile(
     fileName: String,

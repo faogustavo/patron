@@ -1,4 +1,6 @@
 // ktlint-disable filename
 package dev.patron.dsl.specs.annotation
 
-typealias AnnotationBuilderBlock = AnnotationBuilder.() -> Unit
+import dev.patron.dsl.specs.Block
+
+typealias AnnotationBuilderBlock = Block<AnnotationBuilder>
