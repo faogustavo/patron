@@ -1,78 +1,75 @@
 # Features
 
-- [ ] Use poet types
-    - [ ] %S
-    - [ ] %T
-    - [ ] %M
-    - [ ] %N
-    - [ ] %L
-    - [ ] %B (From project to work with booleans)
+- [X] Use poet types ## Resolved implementing the new code builder
+    - [X] %S
+    - [X] %T
+    - [X] %M
+    - [X] %N
+    - [X] %L
 - [ ] Files
     - [X] Define Package
-    - [X] Add Class
+    - [ ] Add Class
     - [X] Add Function
-    - [X] Add Properties/Variables
-    - [X] Add Enums
+    - [ ] Add Properties/Variables
+    - [ ] Add Enums
     - [ ] Add Objects
 - [ ] Classes
-    - [X] Visibility
+    - [ ] Visibility
     - [ ] Constructors
-        - [X] Primary Constructor
+        - [ ] Primary Constructor
         - [ ] Constructor overload
-        - [X] Constructor property
+        - [ ] Constructor property
     - [ ] Properties
     - [ ] Modifiers
-        - [X] Data classes
+        - [ ] Data classes
         - [ ]
 - [ ] Functions
     - [X] Visibility
     - [ ] Parameters
-        - [X] Visibility
-        - [X] Simple parameter
-        - [X] Default value
-        - [X] Nullable parameters
-        - [X] Varargs
+        - [ ] Simple parameter
+        - [ ] Default value
+        - [ ] Nullable parameters
+        - [ ] Varargs
         - [ ] Named Arguments (call site)
     - [X] Return
     - [ ] Extension Functions
     - [ ] Inline modifier
     - [ ] Add Code
         - [X] Manually
-        - [X] From file
-        - [ ] From CodeBuilder
-- [ ] Code
+        - [ ] From file
+- [X] Code
     - [X] Add Statement
     - [X] Return Statement
         - [X] Simple return
         - [X] Return specific block
     - [X] Control flow
-    - [ ] CodeBuilder
-- [X] Properties
-    - [X] Define
-    - [X] Val/Var
-    - [X] Visibility
-    - [X] Initial value
-    - [X] Nullability
-    - [X] Getter
-    - [X] Setter
+    - [X] CodeBuilder
+- [ ] Properties
+    - [ ] Define
+    - [ ] Val/Var
+    - [ ] Visibility
+    - [ ] Initial value
+    - [ ] Nullability
+    - [ ] Getter
+    - [ ] Setter
 - [ ] Objects
     - [ ] Simple objects
     - [ ] Companion objects
 - [ ] Enum
-    - [X] Visibility
-    - [X] Basic
+    - [ ] Visibility
+    - [ ] Basic
     - [ ] With attributes
     - [ ] With functions
 - [ ] Interfaces
 - [ ] Anonymous classes
 - [ ] Annotating
     - [X] File
-    - [X] Classes
+    - [ ] Classes
     - [X] Functions
     - [ ] Property (Field/Get/Set)
-    - [X] Parameters
+    - [ ] Parameters
     - [ ] Enum
-        - [X] Enum Class
+        - [ ] Enum Class
         - [ ] Property
 - [ ] Type Alias
 - [ ] Callable references
