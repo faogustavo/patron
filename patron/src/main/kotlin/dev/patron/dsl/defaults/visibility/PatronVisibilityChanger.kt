@@ -4,11 +4,11 @@ import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
 import dev.patron.modifiers.Visibility
 
-class PatronVisibilityChanger(private val target: ChangeableVisibility) :
-    VisibilityChanger {
-    override var visibility: Visibility = Visibility.PUBLIC
+class PatronVisibilityChanger(private val target: ChangeableVisibility) : VisibilityChanger {
+
+    override var visibility: Visibility
+        get() = target.visibility
         set(value) {
-            field = value
-            target.updateVisibility(value)
+            target.visibility = value
         }
 }

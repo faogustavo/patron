@@ -25,4 +25,8 @@ open class FunctionBuilder(private val spec: PatronFunctionSpec) :
             .build()
             .let { spec.addCode(it) }
     }
+
+    companion object {
+        fun withSpec(name: String) = FunctionBuilder(PatronFunctionSpec(name))
+    }
 }

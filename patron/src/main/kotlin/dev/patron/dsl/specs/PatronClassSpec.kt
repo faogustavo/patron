@@ -3,6 +3,7 @@ package dev.patron.dsl.specs
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.TypeSpec
+import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
@@ -17,11 +18,9 @@ class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
 
     private val specBuilder: TypeSpec.Builder = TypeSpec.classBuilder(name)
 
-    override fun build() = specBuilder.build()
+    override var visibility: Visibility by VisibilityHandler(specBuilder.modifiers)
 
-    override fun updateVisibility(newVisibility: Visibility) {
-        specBuilder.addModifiers(newVisibility.modifier)
-    }
+    override fun build() = specBuilder.build()
 
     override fun annotateWith(annotationSpec: AnnotationSpec) {
         specBuilder.addAnnotation(annotationSpec)
