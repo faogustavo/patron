@@ -9,12 +9,12 @@ import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
 import dev.patron.dsl.interfaces.enums.ReceivableEnum
 import dev.patron.dsl.interfaces.function.ReceivableFunction
+import dev.patron.dsl.interfaces.objects.ReceivableObject
 
 class PatronFileSpec(
     fileName: String,
     packageName: String = ""
-) : Buildable<FileSpec>, Annotable, ReceivableFunction,
-    ReceivableClass, ReceivableEnum {
+) : Buildable<FileSpec>, Annotable, ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject {
     private val specBuilder =
         FileSpec.builder(packageName, fileName)
 
@@ -33,6 +33,10 @@ class PatronFileSpec(
     }
 
     override fun addEnum(typeSpec: TypeSpec) {
+        specBuilder.addType(typeSpec)
+    }
+
+    override fun addObject(typeSpec: TypeSpec) {
         specBuilder.addType(typeSpec)
     }
 }

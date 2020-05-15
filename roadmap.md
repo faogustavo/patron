@@ -53,9 +53,9 @@
     - [ ] Nullability
     - [ ] Getter
     - [ ] Setter
-- [ ] Objects
-    - [ ] Simple objects
-    - [ ] Companion objects
+- [X] Objects
+    - [X] Simple objects
+    - [X] Companion objects
 - [ ] Enum
     - [X] Visibility
     - [X] Basic
@@ -67,6 +67,7 @@
     - [X] File
     - [X] Classes
     - [X] Functions
+    - [X] Objects
     - [ ] Property (Field/Get/Set)
     - [ ] Parameters
     - [ ] Enum

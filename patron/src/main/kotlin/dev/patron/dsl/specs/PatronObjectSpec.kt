@@ -12,10 +12,14 @@ import dev.patron.dsl.interfaces.objects.ReceivableObject
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
-class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
-    Annotable, ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject {
+class PatronObjectSpec(name: String, isCompanion: Boolean) : Buildable<TypeSpec>, ChangeableVisibility, Annotable,
+    ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject {
 
-    private val specBuilder: TypeSpec.Builder = TypeSpec.classBuilder(name)
+    private val specBuilder = if (isCompanion) {
+        TypeSpec.companionObjectBuilder(name.takeIf { it.isNotBlank() })
+    } else {
+        TypeSpec.objectBuilder(name)
+    }
 
     override fun build() = specBuilder.build()
 
