@@ -19,7 +19,7 @@ import dev.patron.dsl.interfaces.objects.ObjectReceiver
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
 import dev.patron.dsl.specs.PatronClassSpec
 
-class ClassBuilder(spec: PatronClassSpec) :
+class ClassBuilder(private val spec: PatronClassSpec) :
     Builder<PatronClassSpec, TypeSpec> by PatronBuilder(spec),
     VisibilityChanger by PatronVisibilityChanger(spec),
     Annotator by PatronAnnotator(spec),
@@ -28,6 +28,12 @@ class ClassBuilder(spec: PatronClassSpec) :
     EnumReceiver by PatronEnumReceiver(spec),
     ObjectReceiver by PatronObjectReceiver(spec),
     CompanionObjectReceiver by PatronCompanionObjectReceiver(spec) {
+
+    var isData: Boolean
+        get() = spec.isData
+        set(value) {
+            spec.isData = value
+        }
 
     companion object {
         fun withSpec(name: String) = ClassBuilder(

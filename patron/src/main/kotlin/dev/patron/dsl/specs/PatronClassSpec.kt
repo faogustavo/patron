@@ -2,6 +2,7 @@ package dev.patron.dsl.specs
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.KModifier
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.Annotable
@@ -19,6 +20,14 @@ class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
     private val specBuilder: TypeSpec.Builder = TypeSpec.classBuilder(name)
 
     override var visibility: Visibility by VisibilityHandler(specBuilder.modifiers)
+    var isData: Boolean
+        get() = specBuilder.modifiers.any { it == KModifier.DATA }
+        set(value) {
+            specBuilder.modifiers.remove(KModifier.DATA)
+            if (value) {
+                specBuilder.addModifiers(KModifier.DATA)
+            }
+        }
 
     override fun build() = specBuilder.build()
 

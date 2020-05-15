@@ -11,8 +11,8 @@
     - [X] Add Class
     - [X] Add Function
     - [ ] Add Properties/Variables
-    - [ ] Add Enums
-    - [ ] Add Objects
+    - [X] Add Enums
+    - [X] Add Objects
 - [ ] Classes
     - [X] Visibility
     - [X] Functions
@@ -21,9 +21,13 @@
         - [ ] Constructor overload
         - [ ] Constructor property
     - [ ] Properties
+    - [ ] Inheritance
     - [ ] Modifiers
-        - [ ] Data classes
-        - [ ]
+        - [X] Data classes
+        - [ ] Abstract
+        - [ ] Sealed
+        - [ ] Inner
+        - [ ] Open
 - [ ] Functions
     - [X] Visibility
     - [ ] Parameters
@@ -34,7 +38,13 @@
         - [ ] Named Arguments (call site)
     - [X] Return
     - [ ] Extension Functions
-    - [ ] Inline modifier
+    - [ ] Modifier
+        - [ ] Abstract
+        - [ ] Inline
+        - [ ] Infix
+        - [ ] Tailrec
+        - [ ] Open
+        - [ ] Operator
     - [ ] Add Code
         - [X] Manually
         - [ ] From file
@@ -62,6 +72,7 @@
     - [ ] With attributes
     - [ ] With functions
 - [ ] Interfaces
+- [ ] Annotations
 - [ ] Anonymous classes
 - [ ] Annotating
     - [X] File
