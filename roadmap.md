@@ -57,8 +57,8 @@
     - [ ] Simple objects
     - [ ] Companion objects
 - [ ] Enum
-    - [ ] Visibility
-    - [ ] Basic
+    - [X] Visibility
+    - [X] Basic
     - [ ] With attributes
     - [ ] With functions
 - [ ] Interfaces
@@ -70,7 +70,7 @@
     - [ ] Property (Field/Get/Set)
     - [ ] Parameters
     - [ ] Enum
-        - [ ] Enum Class
+        - [X] Enum Class
         - [ ] Property
 - [ ] Type Alias
 - [ ] Callable references

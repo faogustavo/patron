@@ -7,13 +7,14 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
+import dev.patron.dsl.interfaces.enums.ReceivableEnum
 import dev.patron.dsl.interfaces.function.ReceivableFunction
 
 class PatronFileSpec(
     fileName: String,
     packageName: String = ""
 ) : Buildable<FileSpec>, Annotable, ReceivableFunction,
-    ReceivableClass {
+    ReceivableClass, ReceivableEnum {
     private val specBuilder =
         FileSpec.builder(packageName, fileName)
 
@@ -28,6 +29,10 @@ class PatronFileSpec(
     }
 
     override fun addClass(typeSpec: TypeSpec) {
+        specBuilder.addType(typeSpec)
+    }
+
+    override fun addEnum(typeSpec: TypeSpec) {
         specBuilder.addType(typeSpec)
     }
 }

@@ -6,12 +6,13 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
+import dev.patron.dsl.interfaces.enums.ReceivableEnum
 import dev.patron.dsl.interfaces.function.ReceivableFunction
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
 class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
-    Annotable, ReceivableFunction, ReceivableClass {
+    Annotable, ReceivableFunction, ReceivableClass, ReceivableEnum {
 
     private val specBuilder: TypeSpec.Builder = TypeSpec.classBuilder(name)
 
@@ -30,6 +31,10 @@ class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
     }
 
     override fun addClass(typeSpec: TypeSpec) {
+        specBuilder.addType(typeSpec)
+    }
+
+    override fun addEnum(typeSpec: TypeSpec) {
         specBuilder.addType(typeSpec)
     }
 }

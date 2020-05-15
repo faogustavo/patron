@@ -5,6 +5,7 @@ import dev.patron.dsl.builders.classes.ClassBuilder
 import dev.patron.dsl.builders.classes.ClassBuilderBlock
 import dev.patron.dsl.interfaces.classes.ClassReceiver
 import dev.patron.dsl.interfaces.classes.ReceivableClass
+import dev.patron.ext.newClassName
 
 class PatronClassReceiver(private val receivableClass: ReceivableClass) : ClassReceiver {
 
@@ -20,7 +21,4 @@ class PatronClassReceiver(private val receivableClass: ReceivableClass) : ClassR
             name = className.newClassName,
             block = block
         )
-
-    private val ClassName.newClassName
-        get() = simpleName.split(".").last()
 }
