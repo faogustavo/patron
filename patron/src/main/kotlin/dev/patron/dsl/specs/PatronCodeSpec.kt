@@ -1,4 +1,4 @@
-package dev.patron.dsl.specs.code
+package dev.patron.dsl.specs
 
 import com.squareup.kotlinpoet.CodeBlock
 import dev.patron.dsl.interfaces.building.Buildable

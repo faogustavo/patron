@@ -2,9 +2,9 @@ package examples.delegation
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.asClassName
-import dev.patron.dsl.specs.STRING_MARKER
-import dev.patron.dsl.specs.TYPE_MARKER
-import dev.patron.dsl.specs.file.newFile
+import dev.patron.dsl.STRING_MARKER
+import dev.patron.dsl.TYPE_MARKER
+import dev.patron.dsl.builders.file.newFile
 import dev.patron.modifiers.Visibility
 
 // Example from the new DSL

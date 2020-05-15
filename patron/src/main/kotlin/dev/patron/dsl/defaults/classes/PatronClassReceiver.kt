@@ -1,10 +1,10 @@
 package dev.patron.dsl.defaults.classes
 
 import com.squareup.kotlinpoet.ClassName
+import dev.patron.dsl.builders.classes.ClassBuilder
+import dev.patron.dsl.builders.classes.ClassBuilderBlock
 import dev.patron.dsl.interfaces.classes.ClassReceiver
 import dev.patron.dsl.interfaces.classes.ReceivableClass
-import dev.patron.dsl.specs.classes.ClassBuilder
-import dev.patron.dsl.specs.classes.ClassBuilderBlock
 
 class PatronClassReceiver(private val receivableClass: ReceivableClass) : ClassReceiver {
 

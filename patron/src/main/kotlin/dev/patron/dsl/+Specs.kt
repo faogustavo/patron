@@ -1,4 +1,4 @@
-package dev.patron.dsl.specs
+package dev.patron.dsl
 
 typealias Block<T> = T.() -> Unit
 

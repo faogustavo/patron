@@ -1,4 +1,4 @@
-package dev.patron.dsl.specs.function
+package dev.patron.dsl.specs
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.CodeBlock

@@ -1,6 +1,6 @@
 // ktlint-disable filename
-package dev.patron.dsl.specs.annotation
+package dev.patron.dsl.builders.annotation
 
-import dev.patron.dsl.specs.Block
+import dev.patron.dsl.Block
 
 typealias AnnotationBuilderBlock = Block<AnnotationBuilder>

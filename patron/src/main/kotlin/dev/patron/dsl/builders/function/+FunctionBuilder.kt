@@ -1,6 +1,6 @@
 // ktlint-disable filename
-package dev.patron.dsl.specs.function
+package dev.patron.dsl.builders.function
 
-import dev.patron.dsl.specs.Block
+import dev.patron.dsl.Block
 
 typealias FunctionBuilderBlock = Block<FunctionBuilder>

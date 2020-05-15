@@ -1,4 +1,4 @@
-package dev.patron.dsl.specs.classes
+package dev.patron.dsl.builders.classes
 
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.defaults.annotation.PatronAnnotator
@@ -11,6 +11,7 @@ import dev.patron.dsl.interfaces.building.Builder
 import dev.patron.dsl.interfaces.classes.ClassReceiver
 import dev.patron.dsl.interfaces.function.FunctionReceiver
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
+import dev.patron.dsl.specs.PatronClassSpec
 
 class ClassBuilder(spec: PatronClassSpec) :
     Builder<PatronClassSpec, TypeSpec> by PatronBuilder(spec),
@@ -20,6 +21,8 @@ class ClassBuilder(spec: PatronClassSpec) :
     ClassReceiver by PatronClassReceiver(spec) {
 
     companion object {
-        fun withSpec(name: String) = ClassBuilder(PatronClassSpec(name))
+        fun withSpec(name: String) = ClassBuilder(
+            PatronClassSpec(name)
+        )
     }
 }

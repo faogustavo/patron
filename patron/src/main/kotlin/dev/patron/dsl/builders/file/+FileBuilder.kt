@@ -1,6 +1,6 @@
-package dev.patron.dsl.specs.file
+package dev.patron.dsl.builders.file
 
-import dev.patron.dsl.specs.Block
+import dev.patron.dsl.Block
 
 typealias FileBuilderBlock = Block<FileBuilder>
 

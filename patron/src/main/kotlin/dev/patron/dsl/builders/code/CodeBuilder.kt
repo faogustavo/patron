@@ -1,9 +1,10 @@
-package dev.patron.dsl.specs.code
+package dev.patron.dsl.builders.code
 
 import com.squareup.kotlinpoet.CodeBlock
+import dev.patron.dsl.LITERAL_MARKER
 import dev.patron.dsl.defaults.building.PatronBuilder
 import dev.patron.dsl.interfaces.building.Builder
-import dev.patron.dsl.specs.LITERAL_MARKER
+import dev.patron.dsl.specs.PatronCodeSpec
 
 open class CodeBuilder(protected val spec: PatronCodeSpec = PatronCodeSpec()) :
     Builder<PatronCodeSpec, CodeBlock> by PatronBuilder(spec) {

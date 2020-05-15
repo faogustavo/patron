@@ -1,9 +1,10 @@
-package dev.patron.dsl.specs.annotation
+package dev.patron.dsl.builders.annotation
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import dev.patron.dsl.defaults.building.PatronBuilder
 import dev.patron.dsl.interfaces.building.Builder
+import dev.patron.dsl.specs.PatronAnnotationSpec
 
 class AnnotationBuilder(private val spec: PatronAnnotationSpec) :
     Builder<PatronAnnotationSpec, AnnotationSpec> by PatronBuilder(

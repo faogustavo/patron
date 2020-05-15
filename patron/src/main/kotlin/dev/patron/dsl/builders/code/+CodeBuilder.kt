@@ -1,7 +1,7 @@
 // ktlint-disable filename
-package dev.patron.dsl.specs.code
+package dev.patron.dsl.builders.code
 
-import dev.patron.dsl.specs.Block
+import dev.patron.dsl.Block
 
 internal const val RETURN_KEYWORD = "return"
 

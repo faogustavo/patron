@@ -1,4 +1,4 @@
-package dev.patron.dsl.specs.file
+package dev.patron.dsl.builders.file
 
 import com.squareup.kotlinpoet.FileSpec
 import dev.patron.dsl.defaults.annotation.PatronFileAnnotator
@@ -9,6 +9,7 @@ import dev.patron.dsl.interfaces.annotation.Annotator
 import dev.patron.dsl.interfaces.building.Builder
 import dev.patron.dsl.interfaces.classes.ClassReceiver
 import dev.patron.dsl.interfaces.function.FunctionReceiver
+import dev.patron.dsl.specs.PatronFileSpec
 
 class FileBuilder(spec: PatronFileSpec) :
     Builder<PatronFileSpec, FileSpec> by PatronBuilder(spec),

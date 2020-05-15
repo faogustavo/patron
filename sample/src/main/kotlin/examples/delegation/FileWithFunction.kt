@@ -1,8 +1,8 @@
 package examples.delegation
 
 import com.squareup.kotlinpoet.asClassName
-import dev.patron.dsl.specs.STRING_MARKER
-import dev.patron.dsl.specs.file.newFile
+import dev.patron.dsl.STRING_MARKER
+import dev.patron.dsl.builders.file.newFile
 import dev.patron.modifiers.Visibility
 import org.jetbrains.annotations.Nullable
 

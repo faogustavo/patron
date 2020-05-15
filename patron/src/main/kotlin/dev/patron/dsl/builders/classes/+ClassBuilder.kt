@@ -1,8 +1,8 @@
-package dev.patron.dsl.specs.classes
+package dev.patron.dsl.builders.classes
 
 import com.squareup.kotlinpoet.ClassName
-import dev.patron.dsl.specs.Block
-import dev.patron.dsl.specs.file.newFile
+import dev.patron.dsl.Block
+import dev.patron.dsl.builders.file.newFile
 
 typealias ClassBuilderBlock = Block<ClassBuilder>
 
