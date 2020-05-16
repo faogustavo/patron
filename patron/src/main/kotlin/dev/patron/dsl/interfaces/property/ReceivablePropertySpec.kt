@@ -2,6 +2,6 @@ package dev.patron.dsl.interfaces.property
 
 import com.squareup.kotlinpoet.PropertySpec
 
-interface ReceivableProperty {
+interface ReceivablePropertySpec {
     fun addProperty(propertySpec: PropertySpec)
 }

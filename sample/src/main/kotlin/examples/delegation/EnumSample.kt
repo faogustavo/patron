@@ -46,13 +46,17 @@ fun main() {
                 -"C"
             }
             newClass(InnerClass) {}
-            newProperty("foo", String::class.asClassName()) {
-                isNullable = true
+            properties {
+                ("foo" to String::class.asClassName()) {
+                    isNullable = true
+                }
             }
             newObject("Counter") {
-                newProperty("count", Int::class.asClassName()) {
-                    initWith = 0
-                    isMutable = true
+                properties {
+                    ("count" to Int::class.asClassName()) {
+                        initWith = 0
+                        isMutable = true
+                    }
                 }
             }
             companionObject {

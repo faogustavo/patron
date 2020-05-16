@@ -11,12 +11,12 @@ import dev.patron.dsl.interfaces.classes.ReceivableClass
 import dev.patron.dsl.interfaces.enums.ReceivableEnum
 import dev.patron.dsl.interfaces.function.ReceivableFunction
 import dev.patron.dsl.interfaces.objects.ReceivableObject
-import dev.patron.dsl.interfaces.property.ReceivableProperty
+import dev.patron.dsl.interfaces.property.ReceivablePropertySpec
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
 class PatronObjectSpec(name: String, isCompanion: Boolean) : Buildable<TypeSpec>, ChangeableVisibility, Annotable,
-    ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject, ReceivableProperty {
+    ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject, ReceivablePropertySpec {
 
     private val specBuilder = if (isCompanion) {
         TypeSpec.companionObjectBuilder(name.takeIf { it.isNotBlank() })

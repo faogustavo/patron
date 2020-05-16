@@ -10,16 +10,20 @@ fun main() {
         fileName = "Property",
         packageName = "com.hello.world"
     ) {
-        newProperty("NAME", String::class.asClassName()) {
-            isConst = true
-            visibility = Visibility.INTERNAL
-            initWith = "Simple Class Name"
+        properties {
+            ("NAME" to String::class.asClassName()) {
+                isConst = true
+                visibility = Visibility.INTERNAL
+                initWith = "Simple Class Name"
+            }
         }
 
         newClass("PropertyHolder") {
-            newProperty("count", Int::class.asClassName()) {
-                initWith = 0
-                isMutable = true
+            properties {
+                ("count" to Int::class.asClassName()) {
+                    initWith = 0
+                    isMutable = true
+                }
             }
 
             newFunction("inc") {
@@ -30,12 +34,14 @@ fun main() {
         }
 
         newObject("SingletonObject") {
-            newProperty("staticProperty", String::class.asClassName()) {
-                isMutable = true
-                isNullable = true
+            properties {
+                ("staticProperty" to String::class.asClassName()) {
+                    isMutable = true
+                    isNullable = true
 
-                annotateWith(Nullable::class.asClassName())
-                annotateWith(JvmStatic::class.asClassName())
+                    annotateWith(Nullable::class.asClassName())
+                    annotateWith(JvmStatic::class.asClassName())
+                }
             }
         }
 
@@ -46,8 +52,10 @@ fun main() {
                 -"C"
             }
 
-            newProperty("isTrue", Boolean::class.asClassName()) {
-                initWith = false
+            properties {
+                ("isTrue" to Boolean::class.asClassName()) {
+                    initWith = false
+                }
             }
         }
     }.writeTo(System.out)
