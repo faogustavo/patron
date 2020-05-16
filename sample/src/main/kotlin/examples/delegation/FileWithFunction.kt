@@ -16,19 +16,21 @@ fun main() {
             "name = $STRING_MARKER" withValue "PatronFunctions"
         }
 
-        newFunction("main") {
-            visibility = Visibility.PRIVATE
+        functions {
+            "main" {
+                visibility = Visibility.PRIVATE
 
-            returning {
-                type = String::class.asClassName()
-                isNullable = true
-            }
+                returning {
+                    type = String::class.asClassName()
+                    isNullable = true
+                }
 
-            annotateWith(Nullable::class.asClassName())
+                annotateWith(Nullable::class.asClassName())
 
-            code {
-                -("val text = %S" to listOf("Hello World!"))
-                -("println(text)")
+                code {
+                    -("val text = %S" to listOf("Hello World!"))
+                    -("println(text)")
+                }
             }
         }
     }.writeTo(System.out)

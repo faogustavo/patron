@@ -74,9 +74,11 @@ fun main() {
             }
         }
 
-        newFunction("main") {
-            code {
-                -("println($TYPE_MARKER.WIN)" to listOf(BasicEnum))
+        functions {
+            "main" {
+                code {
+                    -("println($TYPE_MARKER.WIN)" to listOf(BasicEnum))
+                }
             }
         }
     }.writeTo(System.out)

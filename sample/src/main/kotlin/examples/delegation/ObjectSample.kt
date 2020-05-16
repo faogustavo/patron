@@ -18,9 +18,11 @@ fun main() {
         val HelloThere = ClassName("com.hello.world", "HelloThere")
 
         newObject(Greeter) {
-            newFunction("greet") {
-                code {
-                    -("println($STRING_MARKER)" to listOf("Hello World!"))
+            functions {
+                "greet" {
+                    code {
+                        -("println($STRING_MARKER)" to listOf("Hello World!"))
+                    }
                 }
             }
 
@@ -31,10 +33,12 @@ fun main() {
             companionObject("RandomCompanion", block = ::brazilianGreeter)
         }
 
-        newFunction("main") {
-            code {
-                -("$TYPE_MARKER.greet()" to listOf(Greeter))
-                -("$TYPE_MARKER.greet()" to listOf(BrazilianGreeter))
+        functions {
+            "main" {
+                code {
+                    -("$TYPE_MARKER.greet()" to listOf(Greeter))
+                    -("$TYPE_MARKER.greet()" to listOf(BrazilianGreeter))
+                }
             }
         }
     }.writeTo(System.out)
@@ -45,9 +49,11 @@ private fun brazilianGreeter(builder: ObjectBuilder) = with(builder) {
 
     annotateWith(JvmStatic::class.asClassName())
 
-    newFunction("greet") {
-        code {
-            -("println($STRING_MARKER)" to listOf("Olá Mundo!"))
+    functions {
+        "greet" {
+            code {
+                -("println($STRING_MARKER)" to listOf("Olá Mundo!"))
+            }
         }
     }
 }

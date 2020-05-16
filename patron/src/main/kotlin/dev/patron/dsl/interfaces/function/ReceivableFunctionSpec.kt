@@ -2,6 +2,6 @@ package dev.patron.dsl.interfaces.function
 
 import com.squareup.kotlinpoet.FunSpec
 
-interface ReceivableFunction {
+interface ReceivableFunctionSpec {
     fun addFunction(funSpec: FunSpec)
 }

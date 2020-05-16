@@ -17,20 +17,8 @@ fun main() {
         packageName = "com.hello.world"
     ) {
         newClass(greeterClassName) {
-            newFunction("greet") {
-                visibility = Visibility.INTERNAL
-
-                returning {
-                    type = String::class.asClassName()
-                }
-
-                code {
-                    !(STRING_MARKER to "Hello from greeter!")
-                }
-            }
-
-            newClass(innerGreeterClassName) {
-                newFunction("innerGreet") {
+            functions {
+                "greet" {
                     visibility = Visibility.INTERNAL
 
                     returning {
@@ -38,19 +26,37 @@ fun main() {
                     }
 
                     code {
-                        !(STRING_MARKER to "Hello from inner greeter!")
+                        !(STRING_MARKER to "Hello from greeter!")
+                    }
+                }
+            }
+
+            newClass(innerGreeterClassName) {
+                functions {
+                    "innerGreet" {
+                        visibility = Visibility.INTERNAL
+
+                        returning {
+                            type = String::class.asClassName()
+                        }
+
+                        code {
+                            !(STRING_MARKER to "Hello from inner greeter!")
+                        }
                     }
                 }
             }
         }
 
-        newFunction("main") {
-            code {
-                -("val greeter = $TYPE_MARKER()" to listOf(greeterClassName))
-                -"println(greeter.greet())"
-                -""
-                -("val innerGreeter = $TYPE_MARKER()" to listOf(innerGreeterClassName))
-                -"println(innerGreeter.innerGreet())"
+        functions {
+            "main" {
+                code {
+                    -("val greeter = $TYPE_MARKER()" to listOf(greeterClassName))
+                    -"println(greeter.greet())"
+                    -""
+                    -("val innerGreeter = $TYPE_MARKER()" to listOf(innerGreeterClassName))
+                    -"println(innerGreeter.innerGreet())"
+                }
             }
         }
     }.writeTo(System.out)

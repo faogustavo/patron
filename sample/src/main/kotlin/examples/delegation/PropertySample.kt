@@ -26,9 +26,11 @@ fun main() {
                 }
             }
 
-            newFunction("inc") {
-                code {
-                    -"count += 1"
+            functions {
+                "inc" {
+                    code {
+                        -"count += 1"
+                    }
                 }
             }
         }
