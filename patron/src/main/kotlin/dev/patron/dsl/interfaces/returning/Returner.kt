@@ -4,6 +4,6 @@ import com.squareup.kotlinpoet.ClassName
 
 interface Returner {
 
-    var returnType: ClassName
-    var nullableReturn: Boolean
+    var type: ClassName
+    var isNullable: Boolean
 }

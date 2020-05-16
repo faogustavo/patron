@@ -57,7 +57,9 @@ fun main() {
             }
             companionObject {
                 newFunction("parse") {
-                    returnType = EnumWithClass
+                    returning {
+                        type = EnumWithClass
+                    }
                     code {
                         returnWith(
                             valueStatement = EnumWithClass,

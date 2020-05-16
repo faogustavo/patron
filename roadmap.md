@@ -31,10 +31,10 @@
 - [ ] Functions
     - [X] Visibility
     - [ ] Parameters
-        - [ ] Simple parameter
-        - [ ] Default value
-        - [ ] Nullable parameters
-        - [ ] Varargs
+        - [X] Simple parameter
+        - [X] Default value
+        - [X] Nullable parameters
+        - [X] Varargs
         - [ ] Named Arguments (call site)
     - [X] Return
     - [ ] Extension Functions

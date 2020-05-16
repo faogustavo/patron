@@ -24,8 +24,12 @@ class PatronPropertySpec(
     private val builtType: TypeName
         get() = type.copy(nullable = isNullable)
 
+    private var initFormat: String = if (type == STRING) STRING_MARKER else LITERAL_MARKER
+    internal var initArguments: Array<out Any?> = emptyArray()
+
     override var visibility: Visibility by VisibilityHandler(specModifiers)
 
+    var isNullable: Boolean = false
     var isLateInit: Boolean = false
         set(value) {
             field = value
@@ -54,11 +58,6 @@ class PatronPropertySpec(
                 specModifiers.remove(KModifier.CONST)
             }
         }
-
-    var isNullable: Boolean = false
-
-    internal var initFormat: String = if (type == STRING) STRING_MARKER else LITERAL_MARKER
-    internal var initArguments: Array<out Any?> = emptyArray()
 
     fun initWith(value: Any?) {
         initArguments = arrayOf(value)

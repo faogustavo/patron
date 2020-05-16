@@ -20,7 +20,9 @@ fun main() {
             newFunction("greet") {
                 visibility = Visibility.INTERNAL
 
-                returnType = String::class.asClassName()
+                returning {
+                    type = String::class.asClassName()
+                }
 
                 code {
                     !(STRING_MARKER to "Hello from greeter!")
@@ -31,7 +33,9 @@ fun main() {
                 newFunction("innerGreet") {
                     visibility = Visibility.INTERNAL
 
-                    returnType = String::class.asClassName()
+                    returning {
+                        type = String::class.asClassName()
+                    }
 
                     code {
                         !(STRING_MARKER to "Hello from inner greeter!")
