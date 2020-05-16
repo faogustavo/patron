@@ -6,11 +6,11 @@
     - [X] %M
     - [X] %N
     - [X] %L
-- [ ] Files
+- [X] Files
     - [X] Define Package
     - [X] Add Class
     - [X] Add Function
-    - [ ] Add Properties/Variables
+    - [X] Add Properties/Variables
     - [X] Add Enums
     - [X] Add Objects
 - [ ] Classes
@@ -20,7 +20,7 @@
         - [ ] Primary Constructor
         - [ ] Constructor overload
         - [ ] Constructor property
-    - [ ] Properties
+    - [X] Properties
     - [ ] Inheritance
     - [ ] Modifiers
         - [X] Data classes
@@ -56,11 +56,17 @@
     - [X] Control flow
     - [X] CodeBuilder
 - [ ] Properties
-    - [ ] Define
-    - [ ] Val/Var
-    - [ ] Visibility
-    - [ ] Initial value
-    - [ ] Nullability
+    - [X] Define
+    - [X] Val/Var
+    - [X] Visibility
+    - [X] Initial value
+    - [X] Nullability
+    - [ ] Modifiers
+        - [X] Const
+        - [X] Late Init
+        - [ ] Abstract
+        - [ ] Open
+        - [ ] Final
     - [ ] Getter
     - [ ] Setter
 - [X] Objects
@@ -71,6 +77,13 @@
     - [X] Basic
     - [ ] With attributes
     - [ ] With functions
+    - [ ] Function
+    - [ ] Property
+    - [ ] Child Enum
+    - [ ] Child class
+    - [ ] Object
+        - [ ] Simple
+        - [ ] Companion
 - [ ] Interfaces
 - [ ] Annotations
 - [ ] Anonymous classes

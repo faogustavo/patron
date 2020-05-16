@@ -58,7 +58,7 @@ open class CodeBuilder(protected val spec: PatronCodeSpec = PatronCodeSpec()) :
     }
 
     fun returnWith(
-        valueStatement: String,
+        valueStatement: Any,
         parameterMarker: String = LITERAL_MARKER,
         blockName: String? = null
     ) {

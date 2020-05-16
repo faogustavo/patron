@@ -2,6 +2,7 @@ package dev.patron.dsl.specs
 
 import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.FunSpec
+import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.Annotable
@@ -10,11 +11,12 @@ import dev.patron.dsl.interfaces.classes.ReceivableClass
 import dev.patron.dsl.interfaces.enums.ReceivableEnum
 import dev.patron.dsl.interfaces.function.ReceivableFunction
 import dev.patron.dsl.interfaces.objects.ReceivableObject
+import dev.patron.dsl.interfaces.property.ReceivableProperty
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
 class PatronObjectSpec(name: String, isCompanion: Boolean) : Buildable<TypeSpec>, ChangeableVisibility, Annotable,
-    ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject {
+    ReceivableFunction, ReceivableClass, ReceivableEnum, ReceivableObject, ReceivableProperty {
 
     private val specBuilder = if (isCompanion) {
         TypeSpec.companionObjectBuilder(name.takeIf { it.isNotBlank() })
@@ -44,5 +46,9 @@ class PatronObjectSpec(name: String, isCompanion: Boolean) : Buildable<TypeSpec>
 
     override fun addObject(typeSpec: TypeSpec) {
         specBuilder.addType(typeSpec)
+    }
+
+    override fun addProperty(propertySpec: PropertySpec) {
+        specBuilder.addProperty(propertySpec)
     }
 }
