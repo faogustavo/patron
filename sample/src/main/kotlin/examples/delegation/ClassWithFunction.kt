@@ -9,31 +9,17 @@ import dev.patron.modifiers.Visibility
 
 // Example from the new DSL
 fun main() {
-    val greeterClassName = ClassName("com.hello.world", "Greeter")
-    val innerGreeterClassName = ClassName("com.hello.world", "Greeter.InnerGreeter")
+    val Greeter = ClassName("com.hello.world", "Greeter")
+    val InnerGreeter = ClassName("com.hello.world", "Greeter.InnerGreeter")
 
     newFile(
         fileName = "Funcs",
         packageName = "com.hello.world"
     ) {
-        newClass(greeterClassName) {
-            functions {
-                "greet" {
-                    visibility = Visibility.INTERNAL
-
-                    returning {
-                        type = String::class.asClassName()
-                    }
-
-                    code {
-                        !(STRING_MARKER to "Hello from greeter!")
-                    }
-                }
-            }
-
-            newClass(innerGreeterClassName) {
+        classes {
+            Greeter {
                 functions {
-                    "innerGreet" {
+                    "greet" {
                         visibility = Visibility.INTERNAL
 
                         returning {
@@ -41,7 +27,25 @@ fun main() {
                         }
 
                         code {
-                            !(STRING_MARKER to "Hello from inner greeter!")
+                            !(STRING_MARKER to "Hello from greeter!")
+                        }
+                    }
+                }
+
+                classes {
+                    InnerGreeter {
+                        functions {
+                            "innerGreet" {
+                                visibility = Visibility.INTERNAL
+
+                                returning {
+                                    type = String::class.asClassName()
+                                }
+
+                                code {
+                                    !(STRING_MARKER to "Hello from inner greeter!")
+                                }
+                            }
                         }
                     }
                 }
@@ -51,10 +55,10 @@ fun main() {
         functions {
             "main" {
                 code {
-                    -("val greeter = $TYPE_MARKER()" to listOf(greeterClassName))
+                    -("val greeter = $TYPE_MARKER()" to listOf(Greeter))
                     -"println(greeter.greet())"
                     -""
-                    -("val innerGreeter = $TYPE_MARKER()" to listOf(innerGreeterClassName))
+                    -("val innerGreeter = $TYPE_MARKER()" to listOf(InnerGreeter))
                     -"println(innerGreeter.innerGreet())"
                 }
             }

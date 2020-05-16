@@ -36,7 +36,9 @@ fun main() {
                     -"B"
                     -"C"
                 }
-                newClass(InnerClass) {}
+                classes {
+                    InnerClass {}
+                }
                 properties {
                     ("foo" to String::class.asClassName()) {
                         isNullable = true
@@ -68,13 +70,15 @@ fun main() {
             }
         }
 
-        newClass(EnumHolder) {
-            annotateWith(Nullable::class.asClassName())
-            enums {
-                BasicEnum {
-                    values {
-                        -"WIN"
-                        -"LOSE"
+        classes {
+            EnumHolder {
+                annotateWith(Nullable::class.asClassName())
+                enums {
+                    BasicEnum {
+                        values {
+                            -"WIN"
+                            -"LOSE"
+                        }
                     }
                 }
             }

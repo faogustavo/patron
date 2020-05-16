@@ -7,7 +7,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
-import dev.patron.dsl.interfaces.classes.ReceivableClass
+import dev.patron.dsl.interfaces.classes.ReceivableClassSpec
 import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
 import dev.patron.dsl.interfaces.function.ReceivableFunctionSpec
 import dev.patron.dsl.interfaces.objects.ReceivableObjectSpec
@@ -17,7 +17,8 @@ import dev.patron.modifiers.Visibility
 
 class PatronEnumSpec(
     enumName: String
-) : Buildable<TypeSpec>, ChangeableVisibility, Annotable, ReceivableFunctionSpec, ReceivableClass, ReceivableEnumSpec,
+) : Buildable<TypeSpec>, ChangeableVisibility, Annotable, ReceivableFunctionSpec, ReceivableClassSpec,
+    ReceivableEnumSpec,
     ReceivableObjectSpec, ReceivablePropertySpec {
 
     private val specBuilder: TypeSpec.Builder = TypeSpec.enumBuilder(enumName)

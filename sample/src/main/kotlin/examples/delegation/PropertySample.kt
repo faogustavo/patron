@@ -18,18 +18,20 @@ fun main() {
             }
         }
 
-        newClass("PropertyHolder") {
-            properties {
-                ("count" to Int::class.asClassName()) {
-                    initWith = 0
-                    isMutable = true
+        classes {
+            "PropertyHolder" {
+                properties {
+                    ("count" to Int::class.asClassName()) {
+                        initWith = 0
+                        isMutable = true
+                    }
                 }
-            }
 
-            functions {
-                "inc" {
-                    code {
-                        -"count += 1"
+                functions {
+                    "inc" {
+                        code {
+                            -"count += 1"
+                        }
                     }
                 }
             }

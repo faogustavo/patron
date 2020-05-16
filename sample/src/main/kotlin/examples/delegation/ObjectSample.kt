@@ -31,8 +31,10 @@ fun main() {
             }
         }
 
-        newClass(HelloThere) {
-            companionObject("RandomCompanion", block = ::brazilianGreeter)
+        classes {
+            HelloThere {
+                companionObject("RandomCompanion", block = ::brazilianGreeter)
+            }
         }
 
         functions {

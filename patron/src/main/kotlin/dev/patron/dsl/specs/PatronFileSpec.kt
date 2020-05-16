@@ -7,7 +7,7 @@ import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
-import dev.patron.dsl.interfaces.classes.ReceivableClass
+import dev.patron.dsl.interfaces.classes.ReceivableClassSpec
 import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
 import dev.patron.dsl.interfaces.function.ReceivableFunctionSpec
 import dev.patron.dsl.interfaces.objects.ReceivableObjectSpec
@@ -16,7 +16,8 @@ import dev.patron.dsl.interfaces.property.ReceivablePropertySpec
 class PatronFileSpec(
     fileName: String,
     packageName: String = ""
-) : Buildable<FileSpec>, Annotable, ReceivableFunctionSpec, ReceivableClass, ReceivableEnumSpec, ReceivableObjectSpec,
+) : Buildable<FileSpec>, Annotable, ReceivableFunctionSpec, ReceivableClassSpec, ReceivableEnumSpec,
+    ReceivableObjectSpec,
     ReceivablePropertySpec {
 
     private val specBuilder =

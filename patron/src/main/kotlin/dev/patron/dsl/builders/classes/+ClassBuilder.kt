@@ -9,4 +9,4 @@ typealias ClassBuilderBlock = Block<ClassBuilder>
 fun newClass(className: ClassName, block: ClassBuilderBlock) = newFile(
     fileName = className.simpleName,
     packageName = className.packageName
-) { newClass(className.simpleName, block) }
+) { classes { newClass(className.simpleName, block) } }
