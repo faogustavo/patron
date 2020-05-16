@@ -51,7 +51,9 @@ fun main() {
 private fun brazilianGreeter(builder: ObjectBuilder) = with(builder) {
     visibility = Visibility.INTERNAL
 
-    annotateWith(JvmStatic::class.asClassName())
+    annotations {
+        -JvmStatic::class.asClassName()
+    }
 
     functions {
         "greet" {

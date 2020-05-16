@@ -44,8 +44,10 @@ fun main() {
                         isMutable = true
                         isNullable = true
 
-                        annotateWith(Nullable::class.asClassName())
-                        annotateWith(JvmStatic::class.asClassName())
+                        annotations {
+                            -(Nullable::class.asClassName())
+                            -(JvmStatic::class.asClassName())
+                        }
                     }
                 }
             }

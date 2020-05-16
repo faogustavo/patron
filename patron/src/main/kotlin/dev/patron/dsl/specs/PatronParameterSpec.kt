@@ -8,13 +8,13 @@ import com.squareup.kotlinpoet.STRING
 import com.squareup.kotlinpoet.TypeName
 import dev.patron.dsl.LITERAL_MARKER
 import dev.patron.dsl.STRING_MARKER
-import dev.patron.dsl.interfaces.annotation.Annotable
+import dev.patron.dsl.interfaces.annotation.AnnotableSpec
 import dev.patron.dsl.interfaces.building.Buildable
 
 class PatronParameterSpec(
     private val name: String,
     private val type: ClassName
-) : Buildable<ParameterSpec>, Annotable {
+) : Buildable<ParameterSpec>, AnnotableSpec {
 
     private val specModifiers = mutableListOf<KModifier>()
     private val specAnnotations = mutableListOf<AnnotationSpec>()

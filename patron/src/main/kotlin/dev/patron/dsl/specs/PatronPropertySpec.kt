@@ -9,7 +9,7 @@ import com.squareup.kotlinpoet.TypeName
 import dev.patron.dsl.LITERAL_MARKER
 import dev.patron.dsl.STRING_MARKER
 import dev.patron.dsl.delegates.VisibilityHandler
-import dev.patron.dsl.interfaces.annotation.Annotable
+import dev.patron.dsl.interfaces.annotation.AnnotableSpec
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
@@ -17,7 +17,7 @@ import dev.patron.modifiers.Visibility
 class PatronPropertySpec(
     private val name: String,
     private val type: ClassName
-) : Buildable<PropertySpec>, ChangeableVisibility, Annotable {
+) : Buildable<PropertySpec>, ChangeableVisibility, AnnotableSpec {
 
     private val specAnnotations = mutableListOf<AnnotationSpec>()
     private val specModifiers = mutableListOf<KModifier>()

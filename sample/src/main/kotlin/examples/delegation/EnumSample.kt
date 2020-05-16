@@ -72,7 +72,9 @@ fun main() {
 
         classes {
             EnumHolder {
-                annotateWith(Nullable::class.asClassName())
+                annotations {
+                    -Nullable::class.asClassName()
+                }
                 enums {
                     BasicEnum {
                         values {

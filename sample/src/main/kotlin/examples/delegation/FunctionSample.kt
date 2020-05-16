@@ -12,15 +12,19 @@ fun main() {
         fileName = "Funcs",
         packageName = "com.hello.world"
     ) {
-        annotateWith(JvmName::class.asClassName()) {
-            "name = $STRING_MARKER" withValue "PatronFunctions"
+        annotations {
+            (JvmName::class.asClassName()) {
+                "name = $STRING_MARKER" withValue "PatronFunctions"
+            }
         }
 
         functions {
             "main" {
                 visibility = Visibility.PRIVATE
 
-                annotateWith(Nullable::class.asClassName())
+                annotations {
+                    -Nullable::class.asClassName()
+                }
 
                 returning {
                     type = String::class.asClassName()
@@ -30,7 +34,9 @@ fun main() {
                 parameters {
                     ("args" to String::class.asClassName()) {
                         isVarargs = true
-                        annotateWith(ClassName("android.support.annotation", "StringRes"))
+                        annotations {
+                            -ClassName("android.support.annotation", "StringRes")
+                        }
                     }
                 }
 

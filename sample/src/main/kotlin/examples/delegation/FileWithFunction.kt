@@ -12,8 +12,10 @@ fun main() {
         fileName = "Funcs",
         packageName = "com.hello.world"
     ) {
-        annotateWith(JvmName::class.asClassName()) {
-            "name = $STRING_MARKER" withValue "PatronFunctions"
+        annotations {
+            (JvmName::class.asClassName()) {
+                "name = $STRING_MARKER" withValue "PatronFunctions"
+            }
         }
 
         functions {
@@ -25,7 +27,9 @@ fun main() {
                     isNullable = true
                 }
 
-                annotateWith(Nullable::class.asClassName())
+                annotations {
+                    -Nullable::class.asClassName()
+                }
 
                 code {
                     -("val text = %S" to listOf("Hello World!"))

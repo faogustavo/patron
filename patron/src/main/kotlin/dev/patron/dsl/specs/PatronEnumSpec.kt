@@ -5,7 +5,7 @@ import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.PropertySpec
 import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.delegates.VisibilityHandler
-import dev.patron.dsl.interfaces.annotation.Annotable
+import dev.patron.dsl.interfaces.annotation.AnnotableSpec
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClassSpec
 import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
@@ -17,7 +17,7 @@ import dev.patron.modifiers.Visibility
 
 class PatronEnumSpec(
     enumName: String
-) : Buildable<TypeSpec>, ChangeableVisibility, Annotable, ReceivableFunctionSpec, ReceivableClassSpec,
+) : Buildable<TypeSpec>, ChangeableVisibility, AnnotableSpec, ReceivableFunctionSpec, ReceivableClassSpec,
     ReceivableEnumSpec,
     ReceivableObjectSpec, ReceivablePropertySpec {
 

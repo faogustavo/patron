@@ -4,10 +4,10 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import dev.patron.dsl.builders.annotation.AnnotationBuilder
 import dev.patron.dsl.builders.annotation.AnnotationBuilderBlock
-import dev.patron.dsl.interfaces.annotation.Annotable
+import dev.patron.dsl.interfaces.annotation.AnnotableSpec
 import dev.patron.dsl.interfaces.annotation.Annotator
 
-open class PatronAnnotator(private val annotable: Annotable) : Annotator {
+open class PatronAnnotator(private val annotableSpec: AnnotableSpec) : Annotator {
 
     protected open val site: AnnotationSpec.UseSiteTarget? = null
 
@@ -18,5 +18,5 @@ open class PatronAnnotator(private val annotable: Annotable) : Annotator {
         .withSpec(type, site)
         .apply(block)
         .build()
-        .let(annotable::annotateWith)
+        .let(annotableSpec::annotateWith)
 }
