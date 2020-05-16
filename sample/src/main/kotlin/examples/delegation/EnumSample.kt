@@ -42,11 +42,13 @@ fun main() {
                         isNullable = true
                     }
                 }
-                newObject("Counter") {
-                    properties {
-                        ("count" to Int::class.asClassName()) {
-                            initWith = 0
-                            isMutable = true
+                objects {
+                    "Counter" {
+                        properties {
+                            ("count" to Int::class.asClassName()) {
+                                initWith = 0
+                                isMutable = true
+                            }
                         }
                     }
                 }

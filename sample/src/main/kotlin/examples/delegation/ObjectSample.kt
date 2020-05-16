@@ -17,16 +17,18 @@ fun main() {
         val BrazilianGreeter = ClassName("com.hello.world", "Greeter.BrazilianGreeter")
         val HelloThere = ClassName("com.hello.world", "HelloThere")
 
-        newObject(Greeter) {
-            functions {
-                "greet" {
-                    code {
-                        -("println($STRING_MARKER)" to listOf("Hello World!"))
+        objects {
+            Greeter {
+                functions {
+                    "greet" {
+                        code {
+                            -("println($STRING_MARKER)" to listOf("Hello World!"))
+                        }
                     }
                 }
-            }
 
-            newObject("BrazilianGreeter", ::brazilianGreeter)
+                "BrazilianGreeter".invoke(::brazilianGreeter)
+            }
         }
 
         newClass(HelloThere) {

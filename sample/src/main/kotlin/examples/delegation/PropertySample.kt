@@ -35,14 +35,16 @@ fun main() {
             }
         }
 
-        newObject("SingletonObject") {
-            properties {
-                ("staticProperty" to String::class.asClassName()) {
-                    isMutable = true
-                    isNullable = true
+        objects {
+            "SingletonObject" {
+                properties {
+                    ("staticProperty" to String::class.asClassName()) {
+                        isMutable = true
+                        isNullable = true
 
-                    annotateWith(Nullable::class.asClassName())
-                    annotateWith(JvmStatic::class.asClassName())
+                        annotateWith(Nullable::class.asClassName())
+                        annotateWith(JvmStatic::class.asClassName())
+                    }
                 }
             }
         }

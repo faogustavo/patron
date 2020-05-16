@@ -10,13 +10,13 @@ import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
 import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
 import dev.patron.dsl.interfaces.function.ReceivableFunctionSpec
-import dev.patron.dsl.interfaces.objects.ReceivableObject
+import dev.patron.dsl.interfaces.objects.ReceivableObjectSpec
 import dev.patron.dsl.interfaces.property.ReceivablePropertySpec
 
 class PatronFileSpec(
     fileName: String,
     packageName: String = ""
-) : Buildable<FileSpec>, Annotable, ReceivableFunctionSpec, ReceivableClass, ReceivableEnumSpec, ReceivableObject,
+) : Buildable<FileSpec>, Annotable, ReceivableFunctionSpec, ReceivableClass, ReceivableEnumSpec, ReceivableObjectSpec,
     ReceivablePropertySpec {
 
     private val specBuilder =

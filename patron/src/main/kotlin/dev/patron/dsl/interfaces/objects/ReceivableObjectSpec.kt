@@ -2,6 +2,6 @@ package dev.patron.dsl.interfaces.objects
 
 import com.squareup.kotlinpoet.TypeSpec
 
-interface ReceivableObject {
+interface ReceivableObjectSpec {
     fun addObject(typeSpec: TypeSpec)
 }
