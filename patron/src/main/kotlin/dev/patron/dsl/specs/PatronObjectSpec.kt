@@ -8,7 +8,7 @@ import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.Annotable
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClass
-import dev.patron.dsl.interfaces.enums.ReceivableEnum
+import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
 import dev.patron.dsl.interfaces.function.ReceivableFunctionSpec
 import dev.patron.dsl.interfaces.objects.ReceivableObject
 import dev.patron.dsl.interfaces.property.ReceivablePropertySpec
@@ -16,7 +16,7 @@ import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
 class PatronObjectSpec(name: String, isCompanion: Boolean) : Buildable<TypeSpec>, ChangeableVisibility, Annotable,
-    ReceivableFunctionSpec, ReceivableClass, ReceivableEnum, ReceivableObject, ReceivablePropertySpec {
+    ReceivableFunctionSpec, ReceivableClass, ReceivableEnumSpec, ReceivableObject, ReceivablePropertySpec {
 
     private val specBuilder = if (isCompanion) {
         TypeSpec.companionObjectBuilder(name.takeIf { it.isNotBlank() })

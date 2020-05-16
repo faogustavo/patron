@@ -2,6 +2,6 @@ package dev.patron.dsl.interfaces.enums
 
 import com.squareup.kotlinpoet.TypeSpec
 
-interface ReceivableEnum {
+interface ReceivableEnumSpec {
     fun addEnum(typeSpec: TypeSpec)
 }

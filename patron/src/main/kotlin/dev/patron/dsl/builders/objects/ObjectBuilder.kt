@@ -4,7 +4,7 @@ import com.squareup.kotlinpoet.TypeSpec
 import dev.patron.dsl.defaults.annotation.PatronAnnotator
 import dev.patron.dsl.defaults.building.PatronBuilder
 import dev.patron.dsl.defaults.classes.PatronClassReceiver
-import dev.patron.dsl.defaults.enums.PatronEnumReceiver
+import dev.patron.dsl.defaults.enums.PatronEnumDeclarator
 import dev.patron.dsl.defaults.functions.PatronFunctionDeclarator
 import dev.patron.dsl.defaults.objects.PatronObjectReceiver
 import dev.patron.dsl.defaults.property.PatronPropertyDeclarator
@@ -12,7 +12,7 @@ import dev.patron.dsl.defaults.visibility.PatronVisibilityChanger
 import dev.patron.dsl.interfaces.annotation.Annotator
 import dev.patron.dsl.interfaces.building.Builder
 import dev.patron.dsl.interfaces.classes.ClassReceiver
-import dev.patron.dsl.interfaces.enums.EnumReceiver
+import dev.patron.dsl.interfaces.enums.EnumDeclarator
 import dev.patron.dsl.interfaces.function.FunctionDeclarator
 import dev.patron.dsl.interfaces.objects.ObjectReceiver
 import dev.patron.dsl.interfaces.property.PropertyDeclarator
@@ -25,7 +25,7 @@ class ObjectBuilder(spec: PatronObjectSpec) :
     Annotator by PatronAnnotator(spec),
     FunctionDeclarator by PatronFunctionDeclarator(spec),
     ClassReceiver by PatronClassReceiver(spec),
-    EnumReceiver by PatronEnumReceiver(spec),
+    EnumDeclarator by PatronEnumDeclarator(spec),
     ObjectReceiver by PatronObjectReceiver(spec),
     PropertyDeclarator by PatronPropertyDeclarator(spec) {
 

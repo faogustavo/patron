@@ -18,57 +18,61 @@ fun main() {
         val EnumWithClass = ClassName("com.hello.world", "EnumClass")
         val InnerClass = ClassName("com.hello.world", "EnumClass.InnerClass")
 
-        newEnum("SimpleValues") {
-            visibility = Visibility.INTERNAL
-            values {
-                -"PAPER"
-                -"SCISSORS"
-                -"ROCK"
-                -"LIZARD"
-                -"SPOCK"
+        enums {
+            "SimpleValues" {
+                visibility = Visibility.INTERNAL
+                values {
+                    -"PAPER"
+                    -"SCISSORS"
+                    -"ROCK"
+                    -"LIZARD"
+                    -"SPOCK"
+                }
+            }
+
+            EnumWithClass {
+                values {
+                    -"A"
+                    -"B"
+                    -"C"
+                }
+                newClass(InnerClass) {}
+                properties {
+                    ("foo" to String::class.asClassName()) {
+                        isNullable = true
+                    }
+                }
+                newObject("Counter") {
+                    properties {
+                        ("count" to Int::class.asClassName()) {
+                            initWith = 0
+                            isMutable = true
+                        }
+                    }
+                }
+                companionObject {
+                    newFunction("parse") {
+                        returning {
+                            type = EnumWithClass
+                        }
+                        code {
+                            returnWith(
+                                valueStatement = EnumWithClass,
+                                parameterMarker = "$TYPE_MARKER.A"
+                            )
+                        }
+                    }
+                }
             }
         }
 
         newClass(EnumHolder) {
             annotateWith(Nullable::class.asClassName())
-            newEnum(BasicEnum) {
-                values {
-                    -"WIN"
-                    -"LOSE"
-                }
-            }
-        }
-
-        newEnum(EnumWithClass) {
-            values {
-                -"A"
-                -"B"
-                -"C"
-            }
-            newClass(InnerClass) {}
-            properties {
-                ("foo" to String::class.asClassName()) {
-                    isNullable = true
-                }
-            }
-            newObject("Counter") {
-                properties {
-                    ("count" to Int::class.asClassName()) {
-                        initWith = 0
-                        isMutable = true
-                    }
-                }
-            }
-            companionObject {
-                newFunction("parse") {
-                    returning {
-                        type = EnumWithClass
-                    }
-                    code {
-                        returnWith(
-                            valueStatement = EnumWithClass,
-                            parameterMarker = "$TYPE_MARKER.A"
-                        )
+            enums {
+                BasicEnum {
+                    values {
+                        -"WIN"
+                        -"LOSE"
                     }
                 }
             }

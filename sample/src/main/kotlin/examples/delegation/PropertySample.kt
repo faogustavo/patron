@@ -47,16 +47,18 @@ fun main() {
             }
         }
 
-        newEnum("SampleEnum") {
-            values {
-                -"A"
-                -"B"
-                -"C"
-            }
+        enums {
+            "SampleEnum" {
+                values {
+                    -"A"
+                    -"B"
+                    -"C"
+                }
 
-            properties {
-                ("isTrue" to Boolean::class.asClassName()) {
-                    initWith = false
+                properties {
+                    ("isTrue" to Boolean::class.asClassName()) {
+                        initWith = false
+                    }
                 }
             }
         }
