@@ -17,9 +17,10 @@
     - [X] Visibility
     - [X] Functions
     - [ ] Constructors
-        - [ ] Primary Constructor
+        - [X] Basic constructor
+        - [X] Primary Constructor
         - [ ] Constructor overload
-        - [ ] Constructor property
+        - [X] Constructor property (`PropertyBuilder::initAtPrimaryConstructor`)
     - [X] Properties
     - [ ] Inheritance
     - [ ] Modifiers
@@ -92,8 +93,11 @@
     - [X] Classes
     - [X] Functions
     - [X] Objects
-    - [ ] Property (Field/Get/Set)
-    - [ ] Parameters
+    - [ ] Property
+        - [X] Field
+        - [ ] Get
+        - [ ] Set
+    - [X] Parameters
     - [ ] Enum
         - [X] Enum Class
         - [ ] Property
@@ -114,3 +118,7 @@
 - [X] Configure KTLint
 - [ ] Think in a way to reduce boilerplate
     - Visibility and annotation logic is duplicated on every class it is needed.
+- [ ] Extract enums that makes some definition to specs to decouple that logic
+    - [ ] Function
+    - [ ] Property
+    - [ ] Annotation

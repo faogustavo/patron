@@ -17,6 +17,7 @@ import dev.patron.dsl.interfaces.function.FunctionDeclarator
 import dev.patron.dsl.interfaces.objects.ObjectDeclarator
 import dev.patron.dsl.interfaces.property.PropertyDeclarator
 import dev.patron.dsl.specs.PatronFileSpec
+import dev.patron.dsl.specs.PatronPropertySpec
 
 class FileBuilder(spec: PatronFileSpec) :
     Builder<PatronFileSpec, FileSpec> by PatronBuilder(spec),
@@ -25,7 +26,7 @@ class FileBuilder(spec: PatronFileSpec) :
     ClassDeclarator by PatronClassDeclarator(spec),
     EnumDeclarator by PatronEnumDeclarator(spec),
     ObjectDeclarator by PatronObjectDeclarator(spec),
-    PropertyDeclarator by PatronPropertyDeclarator(spec) {
+    PropertyDeclarator by PatronPropertyDeclarator(spec, PatronPropertySpec.Scope.FILE) {
 
     companion object {
         fun withSpec(

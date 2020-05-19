@@ -18,6 +18,7 @@ import dev.patron.dsl.interfaces.objects.ObjectDeclarator
 import dev.patron.dsl.interfaces.property.PropertyDeclarator
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
 import dev.patron.dsl.specs.PatronObjectSpec
+import dev.patron.dsl.specs.PatronPropertySpec
 
 class ObjectBuilder(spec: PatronObjectSpec) :
     Builder<PatronObjectSpec, TypeSpec> by PatronBuilder(spec),
@@ -27,7 +28,7 @@ class ObjectBuilder(spec: PatronObjectSpec) :
     ClassDeclarator by PatronClassDeclarator(spec),
     EnumDeclarator by PatronEnumDeclarator(spec),
     ObjectDeclarator by PatronObjectDeclarator(spec),
-    PropertyDeclarator by PatronPropertyDeclarator(spec) {
+    PropertyDeclarator by PatronPropertyDeclarator(spec, PatronPropertySpec.Scope.OBJECT) {
 
     companion object {
         fun withSpec(name: String) = ObjectBuilder(PatronObjectSpec(name, isCompanion = false))

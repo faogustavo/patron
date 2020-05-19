@@ -2,6 +2,7 @@ package dev.patron.dsl.builders.property
 
 import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.PropertySpec
+import dev.patron.dsl.LITERAL_MARKER
 import dev.patron.dsl.defaults.annotation.PatronAnnotationDeclarator
 import dev.patron.dsl.defaults.building.PatronBuilder
 import dev.patron.dsl.defaults.visibility.PatronVisibilityChanger
@@ -11,8 +12,10 @@ import dev.patron.dsl.interfaces.building.Builder
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
 import dev.patron.dsl.specs.PatronPropertySpec
 
-class PropertyBuilder(private val spec: PatronPropertySpec) :
-    Builder<PatronPropertySpec, PropertySpec> by PatronBuilder(spec),
+class PropertyBuilder(
+    private val spec: PatronPropertySpec,
+    private val name: String
+) : Builder<PatronPropertySpec, PropertySpec> by PatronBuilder(spec),
     VisibilityChanger by PatronVisibilityChanger(spec),
     AnnotationDeclarator by PatronAnnotationDeclarator(spec) {
 
@@ -30,7 +33,18 @@ class PropertyBuilder(private val spec: PatronPropertySpec) :
         spec.initWith(format, *arguments)
     }
 
+    fun initAtPrimaryConstructor() {
+        spec.initWith(LITERAL_MARKER, name)
+    }
+
     companion object {
-        fun withSpec(name: String, className: ClassName) = PropertyBuilder(PatronPropertySpec(name, className))
+        fun withSpec(
+            name: String,
+            className: ClassName,
+            scope: PatronPropertySpec.Scope
+        ) = PropertyBuilder(
+            spec = PatronPropertySpec(name = name, type = className, scope = scope),
+            name = name
+        )
     }
 }

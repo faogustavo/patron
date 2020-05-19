@@ -16,7 +16,8 @@ import dev.patron.modifiers.Visibility
 
 class PatronPropertySpec(
     private val name: String,
-    private val type: ClassName
+    private val type: ClassName,
+    private val scope: Scope
 ) : Buildable<PropertySpec>, ChangeableVisibility, AnnotableSpec {
 
     private val specAnnotations = mutableListOf<AnnotationSpec>()
@@ -83,7 +84,7 @@ class PatronPropertySpec(
             }
         }
 
-        if (!isMutable) {
+        if (!isMutable && scope != Scope.CLASS) {
             check(isNullable || initArguments.isNotEmpty()) {
                 "Immutable properties should have an initial value"
             }
@@ -105,4 +106,8 @@ class PatronPropertySpec(
             isNullable && !isLateInit -> initializer("null")
         }
     }.build()
+
+    enum class Scope {
+        CLASS, FILE, ENUM, OBJECT
+    }
 }

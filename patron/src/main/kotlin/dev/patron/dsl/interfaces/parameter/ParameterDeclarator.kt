@@ -11,6 +11,14 @@ interface ParameterDeclarator {
     fun parameters(block: ParameterDeclaratorBlock)
     class Block(spec: ReceivableParameter) : ParameterReceiver by PatronParameterReceiver(spec) {
 
+        operator fun Pair<String, ClassName>.unaryMinus() {
+            newParameter(
+                name = first,
+                type = second,
+                block = {}
+            )
+        }
+
         operator fun Pair<String, ClassName>.invoke(block: ParameterBuilderBlock) {
             newParameter(
                 name = first,

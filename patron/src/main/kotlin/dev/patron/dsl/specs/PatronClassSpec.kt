@@ -9,6 +9,7 @@ import dev.patron.dsl.delegates.VisibilityHandler
 import dev.patron.dsl.interfaces.annotation.AnnotableSpec
 import dev.patron.dsl.interfaces.building.Buildable
 import dev.patron.dsl.interfaces.classes.ReceivableClassSpec
+import dev.patron.dsl.interfaces.constructor.ConstructableSpec
 import dev.patron.dsl.interfaces.enums.ReceivableEnumSpec
 import dev.patron.dsl.interfaces.function.ReceivableFunctionSpec
 import dev.patron.dsl.interfaces.objects.ReceivableObjectSpec
@@ -18,7 +19,7 @@ import dev.patron.modifiers.Visibility
 
 class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
     AnnotableSpec, ReceivableFunctionSpec, ReceivableClassSpec, ReceivableEnumSpec, ReceivableObjectSpec,
-    ReceivablePropertySpec {
+    ReceivablePropertySpec, ConstructableSpec {
 
     private val specBuilder: TypeSpec.Builder = TypeSpec.classBuilder(name)
 
@@ -56,5 +57,13 @@ class PatronClassSpec(name: String) : Buildable<TypeSpec>, ChangeableVisibility,
 
     override fun addProperty(propertySpec: PropertySpec) {
         specBuilder.addProperty(propertySpec)
+    }
+
+    override fun addConstructor(funSpec: FunSpec) {
+        specBuilder.addFunction(funSpec)
+    }
+
+    override fun addPrimaryConstructor(funSpec: FunSpec) {
+        specBuilder.primaryConstructor(funSpec)
     }
 }

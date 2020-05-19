@@ -20,6 +20,7 @@ import dev.patron.dsl.interfaces.objects.ObjectDeclarator
 import dev.patron.dsl.interfaces.property.PropertyDeclarator
 import dev.patron.dsl.interfaces.visibility.VisibilityChanger
 import dev.patron.dsl.specs.PatronEnumSpec
+import dev.patron.dsl.specs.PatronPropertySpec
 
 class EnumBuilder(private val spec: PatronEnumSpec) :
     Builder<PatronEnumSpec, TypeSpec> by PatronBuilder(spec),
@@ -30,7 +31,7 @@ class EnumBuilder(private val spec: PatronEnumSpec) :
     EnumDeclarator by PatronEnumDeclarator(spec),
     ObjectDeclarator by PatronObjectDeclarator(spec),
     CompanionObjectReceiver by PatronCompanionObjectReceiver(spec),
-    PropertyDeclarator by PatronPropertyDeclarator(spec) {
+    PropertyDeclarator by PatronPropertyDeclarator(spec, PatronPropertySpec.Scope.ENUM) {
 
     fun values(block: SimpleEnumValueBlock) {
         ValueSetter().apply(block)

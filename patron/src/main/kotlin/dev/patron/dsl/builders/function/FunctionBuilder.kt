@@ -32,6 +32,18 @@ open class FunctionBuilder(private val spec: PatronFunctionSpec) :
     inner class Return : Returner by PatronReturner(spec)
 
     companion object {
-        fun withSpec(name: String) = FunctionBuilder(PatronFunctionSpec(name))
+        fun withSpec(name: String) = FunctionBuilder(
+            PatronFunctionSpec(
+                name = name,
+                type = PatronFunctionSpec.FunctionType.DEFAULT
+            )
+        )
+
+        fun withConstructorSpec() = FunctionBuilder(
+            PatronFunctionSpec(
+                name = "",
+                type = PatronFunctionSpec.FunctionType.CONSTRUCTOR
+            )
+        )
     }
 }

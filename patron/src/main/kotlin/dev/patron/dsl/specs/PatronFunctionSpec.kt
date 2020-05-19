@@ -13,9 +13,15 @@ import dev.patron.dsl.interfaces.returning.Returnable
 import dev.patron.dsl.interfaces.visibility.ChangeableVisibility
 import dev.patron.modifiers.Visibility
 
-class PatronFunctionSpec(name: String) : Buildable<FunSpec>, ChangeableVisibility, Returnable, AnnotableSpec,
-    ReceivableParameter {
-    private val specBuilder: FunSpec.Builder = FunSpec.builder(name)
+class PatronFunctionSpec(
+    name: String,
+    type: FunctionType = FunctionType.DEFAULT
+) : Buildable<FunSpec>, ChangeableVisibility, Returnable, AnnotableSpec, ReceivableParameter {
+
+    private val specBuilder: FunSpec.Builder = when (type) {
+        FunctionType.CONSTRUCTOR -> FunSpec.constructorBuilder()
+        else -> FunSpec.builder(name)
+    }
 
     override var visibility: Visibility by VisibilityHandler(specBuilder.modifiers)
 
@@ -35,5 +41,10 @@ class PatronFunctionSpec(name: String) : Buildable<FunSpec>, ChangeableVisibilit
 
     override fun addParameter(parameterSpec: ParameterSpec) {
         specBuilder.addParameter(parameterSpec)
+    }
+
+    enum class FunctionType {
+        DEFAULT,
+        CONSTRUCTOR
     }
 }
