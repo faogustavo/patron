@@ -26,8 +26,8 @@ abstract class SnapshotTester(private val resourcesDir: String? = null) {
         val expectedResult = getSnapshotExpectedResult(metadata).normalizeLineEndingChar()
         val result = block().normalizeLineEndingChar()
 
-        expectThat(expectedResult)
-            .isEqualTo(result)
+        expectThat(result)
+            .isEqualTo(expectedResult)
     }
 
     fun getFileFromResources(fileName: String, vararg path: String): File {

@@ -3,8 +3,15 @@
 package dev.patron.snapshots
 
 import com.squareup.kotlinpoet.ClassName
+import com.squareup.kotlinpoet.asClassName
+import dev.patron.LITERAL_MARKER
+import dev.patron.STRING_MARKER
 import dev.patron.SnapshotTester
-import dev.patron.file.newFile
+import dev.patron.TYPE_MARKER
+import dev.patron.builders.classes.newClass
+import dev.patron.builders.enums.newEnum
+import dev.patron.builders.file.newFile
+import dev.patron.builders.function.newFunction
 import org.junit.Test
 import java.io.IOException
 
@@ -16,7 +23,9 @@ class AnnotationTest : SnapshotTester() {
             fileName = "Annotations",
             packageName = "com.hello.world"
         ) {
-            annotateWith(JvmName::class)
+            annotations {
+                -JvmName::class.asClassName()
+            }
         }.toString()
     }
 
@@ -26,51 +35,61 @@ class AnnotationTest : SnapshotTester() {
             fileName = "Annotations",
             packageName = "com.hello.world"
         ) {
-            annotateWith(JvmName::class) {
-                "name = %S" withValue "AnnotationTestSnap"
+            annotations {
+                (JvmName::class.asClassName()) {
+                    "name = $STRING_MARKER" withValue "AnnotationTestSnap"
+                }
             }
         }.toString()
     }
 
     @Test
     fun classAnnotation_withoutArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            newClass("Person") {
-                isData = true
+        newClass(ClassName("com.hello.world", "Person")) {
+            isData = true
+
+            properties {
+                ("name" to String::class.asClassName()) {
+                    initAtPrimaryConstructor()
+                }
+            }
+
+            constructors {
                 primaryConstructor {
                     parameters {
-                        "name".withType(String::class) {
-                            isProperty = true
-                        }
+                        -("name" to String::class.asClassName())
                     }
                 }
+            }
 
-                annotateWith(ClassName("com.squareup.moshi", "JsonClass"))
+            annotations {
+                -ClassName("com.squareup.moshi", "JsonClass")
             }
         }.toString()
     }
 
     @Test
     fun classAnnotation_withArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            newClass("Person") {
-                isData = true
+        newClass(ClassName("com.hello.world", "Person")) {
+            isData = true
+
+            properties {
+                ("name" to String::class.asClassName()) {
+                    initAtPrimaryConstructor()
+                }
+            }
+
+            constructors {
                 primaryConstructor {
                     parameters {
-                        "name".withType(String::class) {
-                            isProperty = true
-                        }
+                        -("name" to String::class.asClassName())
                     }
                 }
+            }
 
-                annotateWith(ClassName("com.squareup.moshi", "JsonClass")) {
-                    "generateAdapter = %B" withValue true
+            annotations {
+                (ClassName("com.squareup.moshi", "JsonClass")) {
+                    "generateAdapter = $LITERAL_MARKER" withValue true
                 }
             }
         }.toString()
@@ -78,37 +97,31 @@ class AnnotationTest : SnapshotTester() {
 
     @Test
     fun enumAnnotation_withoutArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            enum("ViewVisibility") {
-                values {
-                    +"Visible"
-                    +"Invisible"
-                    +"Gone"
-                }
+        newEnum(ClassName("com.hello.world", "ViewVisibility")) {
+            values {
+                -"Visible"
+                -"Invisible"
+                -"Gone"
+            }
 
-                annotateWith(ClassName("com.squareup.moshi", "JsonClass"))
+            annotations {
+                -ClassName("com.squareup.moshi", "JsonClass")
             }
         }.toString()
     }
 
     @Test
     fun enumAnnotation_withArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            enum("ViewVisibility") {
-                values {
-                    +"Visible"
-                    +"Invisible"
-                    +"Gone"
-                }
+        newEnum(ClassName("com.hello.world", "ViewVisibility")) {
+            values {
+                -"Visible"
+                -"Invisible"
+                -"Gone"
+            }
 
-                annotateWith(ClassName("com.squareup.moshi", "JsonClass")) {
-                    "generateAdapter = %B" withValue true
+            annotations {
+                (ClassName("com.squareup.moshi", "JsonClass")) {
+                    "generateAdapter = $LITERAL_MARKER" withValue true
                 }
             }
         }.toString()
@@ -116,13 +129,12 @@ class AnnotationTest : SnapshotTester() {
 
     @Test
     fun functionAnnotation_withoutArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            newClass("TestClass") {
-                function("helloWorld") {
-                    annotateWith(Test::class)
+        newClass(ClassName("com.hello.world", "TestClass")) {
+            functions {
+                "helloWorld" {
+                    annotations {
+                        -Test::class.asClassName()
+                    }
                 }
             }
         }.toString()
@@ -130,14 +142,13 @@ class AnnotationTest : SnapshotTester() {
 
     @Test
     fun functionAnnotation_withArguments() = test {
-        newFile(
-            fileName = "Annotations",
-            packageName = "com.hello.world"
-        ) {
-            newClass("TestClass") {
-                function("helloWorld") {
-                    annotateWith(Test::class) {
-                        "expected = %T::class" withValue IOException::class
+        newClass(ClassName("com.hello.world", "TestClass")) {
+            functions {
+                "helloWorld" {
+                    annotations {
+                        (Test::class.asClassName()) {
+                            "expected = $TYPE_MARKER::class" withValue IOException::class
+                        }
                     }
                 }
             }
@@ -146,15 +157,16 @@ class AnnotationTest : SnapshotTester() {
 
     @Test
     fun parameterAnnotation_withoutArguments() = test {
-        newFile(
+        newFunction(
             fileName = "Annotations",
-            packageName = "com.hello.world"
+            packageName = "com.hello.world",
+            functionName = "helloWorld"
         ) {
-            newFunction("helloWorld") {
-                parameters {
-                    "random".withType(Int::class) {
-                        initWith = "R.string.hello_world"
-                        annotateWith(ClassName("android.support.annotation", "StringRes"))
+            parameters {
+                ("random" to Int::class.asClassName()) {
+                    defaultValue = "R.string.hello_world"
+                    annotations {
+                        -ClassName("android.support.annotation", "StringRes")
                     }
                 }
             }
@@ -163,15 +175,16 @@ class AnnotationTest : SnapshotTester() {
 
     @Test
     fun parameterAnnotation_withArguments() = test {
-        newFile(
+        newFunction(
             fileName = "Annotations",
-            packageName = "com.hello.world"
+            packageName = "com.hello.world",
+            functionName = "helloWorld"
         ) {
-            newFunction("helloWorld") {
-                parameters {
-                    "random".withType(Int::class) {
-                        annotateWith(ClassName("foo.bar", "Lorem")) {
-                            "someKey = %S" withValue "someValue"
+            parameters {
+                ("random" to Int::class.asClassName()) {
+                    annotations {
+                        (ClassName("foo.bar", "Lorem")) {
+                            "someKey = $STRING_MARKER" withValue "someValue"
                         }
                     }
                 }

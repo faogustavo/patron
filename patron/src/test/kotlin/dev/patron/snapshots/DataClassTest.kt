@@ -1,7 +1,8 @@
 package dev.patron.snapshots
 
+import com.squareup.kotlinpoet.asClassName
 import dev.patron.SnapshotTester
-import dev.patron.file.newFile
+import dev.patron.builders.file.newFile
 import org.junit.Test
 
 class DataClassTest : SnapshotTester() {
@@ -12,21 +13,35 @@ class DataClassTest : SnapshotTester() {
             fileName = "Classes",
             packageName = "com.hello.world"
         ) {
-            newClass("Person") {
-                isData = true
-                primaryConstructor {
-                    parameters {
-                        "name".withType(String::class) {
-                            isProperty = true
+            classes {
+                "Person" {
+                    isData = true
+
+                    properties {
+                        ("name" to String::class.asClassName()) {
+                            initAtPrimaryConstructor()
                         }
-                        "mail".withType(String::class) {
+                        ("mail" to String::class.asClassName()) {
                             isNullable = true
-                            isProperty = true
-                            initWith = "null"
+                            initAtPrimaryConstructor()
                         }
-                        "id".withType(Int::class) {
-                            isProperty = true
-                            initWith = "System.currentTimeMillis()"
+                        ("id" to Int::class.asClassName()) {
+                            initAtPrimaryConstructor()
+                        }
+                    }
+
+                    constructors {
+                        primaryConstructor {
+                            parameters {
+                                -("name" to String::class.asClassName())
+                                ("mail" to String::class.asClassName()) {
+                                    isNullable = true
+                                    initWithNull()
+                                }
+                                ("id" to Int::class.asClassName()) {
+                                    defaultValue = "System.currentTimeMillis()"
+                                }
+                            }
                         }
                     }
                 }

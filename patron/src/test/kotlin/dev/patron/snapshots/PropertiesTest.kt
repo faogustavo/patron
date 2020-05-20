@@ -1,7 +1,8 @@
 package dev.patron.snapshots
 
+import com.squareup.kotlinpoet.asClassName
 import dev.patron.SnapshotTester
-import dev.patron.file.newFile
+import dev.patron.builders.file.newFile
 import dev.patron.modifiers.Visibility
 import org.junit.Test
 
@@ -14,24 +15,27 @@ class PropertiesTest : SnapshotTester() {
             packageName = "com.hello.world"
         ) {
             properties {
-                "privateField".withType(String::class) {
+                ("privateField" to String::class.asClassName()) {
                     isMutable = true
                     visibility = Visibility.PRIVATE
                     isNullable = true
-                    initWith = "null"
                 }
-                "publicField".withType(String::class) {
+                ("publicField" to String::class.asClassName()) {
                     visibility = Visibility.INTERNAL
+                    isMutable = true
+                    isNullable = true
+
                     setter {
-                        isMutable = true
-                        isNullable = true
-                        statements {
-                            +"privateField = value"
+                        parameters {
+                            -("value" to String::class.asClassName())
                         }
-                        getter {
-                            statements {
-                                returnWith("privateField")
-                            }
+                        code {
+                            -"privateField = value"
+                        }
+                    }
+                    getter {
+                        code {
+                            returnWith("privateField")
                         }
                     }
                 }
