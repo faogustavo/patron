@@ -4,6 +4,7 @@ import com.squareup.kotlinpoet.AnnotationSpec
 import com.squareup.kotlinpoet.ClassName
 import dev.patron.defaults.building.PatronBuilder
 import dev.patron.interfaces.building.Builder
+import dev.patron.modifiers.AnnotationSite
 import dev.patron.specs.PatronAnnotationSpec
 
 class AnnotationBuilder(private val spec: PatronAnnotationSpec) :
@@ -12,13 +13,13 @@ class AnnotationBuilder(private val spec: PatronAnnotationSpec) :
     ) {
 
     infix fun String.withValue(value: Any) {
-        spec.specBuilder.addMember(this, value)
+        spec.addParameter(this, value)
     }
 
     companion object {
         fun withSpec(
             type: ClassName,
-            site: AnnotationSpec.UseSiteTarget? = null
+            site: AnnotationSite = AnnotationSite.DEFAULT
         ) = AnnotationBuilder(
             PatronAnnotationSpec(
                 type,
