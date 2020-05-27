@@ -33,11 +33,11 @@ class ParameterBuilder(private val spec: PatronParameterSpec) :
         }
 
     fun initWithNull() {
-        spec.initWith(LITERAL_MARKER, "null")
+        spec.initWithFormat(LITERAL_MARKER, "null")
     }
 
     fun initWithFormat(format: String, vararg arguments: Any) {
-        spec.initWith(format, *arguments)
+        spec.initWithFormat(format, *arguments)
     }
 
     companion object {

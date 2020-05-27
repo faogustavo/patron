@@ -11,6 +11,7 @@ import dev.patron.interfaces.building.Buildable
 import dev.patron.interfaces.parameter.ReceivableParameter
 import dev.patron.interfaces.returning.Returnable
 import dev.patron.interfaces.visibility.ChangeableVisibility
+import dev.patron.modifiers.FunctionType
 import dev.patron.modifiers.Visibility
 
 class PatronFunctionSpec(
@@ -41,18 +42,11 @@ class PatronFunctionSpec(
         specBuilder.returns(typeName)
     }
 
-    internal fun addCode(codeBlock: CodeBlock) {
-        specBuilder.addCode(codeBlock)
-    }
-
     override fun addParameter(parameterSpec: ParameterSpec) {
         specBuilder.addParameter(parameterSpec)
     }
 
-    enum class FunctionType {
-        DEFAULT,
-        CONSTRUCTOR,
-        GETTER,
-        SETTER
+    fun addCode(codeBlock: CodeBlock) {
+        specBuilder.addCode(codeBlock)
     }
 }

@@ -36,11 +36,11 @@ class PatronParameterSpec(
             }
         }
 
-    fun initWith(value: Any?) {
-        defaultValueArguments = arrayOf(value)
+    fun initWith(vararg value: Any?) {
+        defaultValueArguments = value
     }
 
-    fun initWith(format: String = defaultValueFormat, vararg arguments: Any?) {
+    fun initWithFormat(format: String, vararg arguments: Any?) {
         defaultValueFormat = format
         defaultValueArguments = arguments
     }

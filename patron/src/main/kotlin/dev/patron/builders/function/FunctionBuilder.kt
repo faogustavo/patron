@@ -13,6 +13,7 @@ import dev.patron.interfaces.building.Builder
 import dev.patron.interfaces.parameter.ParameterDeclarator
 import dev.patron.interfaces.returning.Returner
 import dev.patron.interfaces.visibility.VisibilityChanger
+import dev.patron.modifiers.FunctionType
 import dev.patron.specs.PatronFunctionSpec
 
 open class FunctionBuilder(private val spec: PatronFunctionSpec) :
@@ -48,28 +49,28 @@ open class FunctionBuilder(private val spec: PatronFunctionSpec) :
         fun withSpec(name: String) = FunctionBuilder(
             PatronFunctionSpec(
                 name = name,
-                type = PatronFunctionSpec.FunctionType.DEFAULT
+                type = FunctionType.DEFAULT
             )
         )
 
         fun withConstructorSpec() = FunctionBuilder(
             PatronFunctionSpec(
                 name = "",
-                type = PatronFunctionSpec.FunctionType.CONSTRUCTOR
+                type = FunctionType.CONSTRUCTOR
             )
         )
 
         fun withGetterSpec() = FunctionBuilder(
             PatronFunctionSpec(
                 name = "",
-                type = PatronFunctionSpec.FunctionType.GETTER
+                type = FunctionType.GETTER
             )
         )
 
         fun withSetterSpec() = FunctionBuilder(
             PatronFunctionSpec(
                 name = "",
-                type = PatronFunctionSpec.FunctionType.SETTER
+                type = FunctionType.SETTER
             )
         )
     }
