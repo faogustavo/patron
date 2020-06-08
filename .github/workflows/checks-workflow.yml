@@ -1,5 +1,5 @@
 name: Test & Lint
-on: [pull_request]
+on: push
 jobs:
   Checks:
     runs-on: ubuntu-latest
