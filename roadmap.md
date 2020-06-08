@@ -38,7 +38,7 @@
         - [X] Varargs
         - [ ] Named Arguments (call site)
     - [X] Return
-    - [ ] Extension Functions
+    - [X] Extension Functions
     - [ ] Modifier
         - [ ] Abstract
         - [ ] Inline

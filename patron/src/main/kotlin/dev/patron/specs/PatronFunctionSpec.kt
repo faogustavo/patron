@@ -1,6 +1,7 @@
 package dev.patron.specs
 
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.ParameterSpec
@@ -8,6 +9,7 @@ import com.squareup.kotlinpoet.TypeName
 import dev.patron.delegates.VisibilityHandler
 import dev.patron.interfaces.annotation.AnnotableSpec
 import dev.patron.interfaces.building.Buildable
+import dev.patron.interfaces.extension.Extensible
 import dev.patron.interfaces.parameter.ReceivableParameter
 import dev.patron.interfaces.returning.Returnable
 import dev.patron.interfaces.visibility.ChangeableVisibility
@@ -21,7 +23,8 @@ class PatronFunctionSpec(
     ChangeableVisibility,
     Returnable,
     AnnotableSpec,
-    ReceivableParameter {
+    ReceivableParameter,
+    Extensible {
 
     private val specBuilder: FunSpec.Builder = when (type) {
         FunctionType.CONSTRUCTOR -> FunSpec.constructorBuilder()
@@ -48,5 +51,9 @@ class PatronFunctionSpec(
 
     fun addCode(codeBlock: CodeBlock) {
         specBuilder.addCode(codeBlock)
+    }
+
+    override fun extend(className: ClassName) {
+        specBuilder.receiver(className)
     }
 }

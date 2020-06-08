@@ -1,6 +1,7 @@
 package dev.patron.specs
 
 import com.squareup.kotlinpoet.AnnotationSpec
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.CodeBlock
 import com.squareup.kotlinpoet.FunSpec
 import com.squareup.kotlinpoet.KModifier
@@ -32,6 +33,7 @@ class PatronFunctionSpecTest {
         every { builder.returns(any<TypeName>()) } returns builder
         every { builder.addCode(any<CodeBlock>()) } returns builder
         every { builder.addParameter(any()) } returns builder
+        every { builder.receiver(any<ClassName>()) } returns builder
 
         every { builder.modifiers } returns modifiers
         every { builder.build() } returns mockk()
@@ -118,6 +120,15 @@ class PatronFunctionSpecTest {
         testSpec().addCode(code)
 
         verify(exactly = 1) { builder.addCode(code) }
+    }
+
+    @Test
+    fun extend_addReceiver() {
+        val className = mockk<ClassName>()
+
+        testSpec().extend(className)
+
+        verify(exactly = 1) { builder.receiver(className) }
     }
 
     private fun testSpec() = PatronFunctionSpec("main")

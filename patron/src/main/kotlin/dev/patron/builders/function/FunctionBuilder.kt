@@ -1,5 +1,6 @@
 package dev.patron.builders.function
 
+import com.squareup.kotlinpoet.ClassName
 import com.squareup.kotlinpoet.FunSpec
 import dev.patron.builders.code.CodeBuilder
 import dev.patron.builders.code.CodeBuilderBlock
@@ -17,18 +18,10 @@ import dev.patron.modifiers.FunctionType
 import dev.patron.specs.PatronFunctionSpec
 
 open class FunctionBuilder(private val spec: PatronFunctionSpec) :
-    Builder<PatronFunctionSpec, FunSpec> by PatronBuilder(
-        spec
-    ),
-    VisibilityChanger by PatronVisibilityChanger(
-        spec
-    ),
-    ParameterDeclarator by PatronParameterDeclarator(
-        spec
-    ),
-    AnnotationDeclarator by PatronAnnotationDeclarator(
-        spec
-    ) {
+    Builder<PatronFunctionSpec, FunSpec> by PatronBuilder(spec),
+    VisibilityChanger by PatronVisibilityChanger(spec),
+    ParameterDeclarator by PatronParameterDeclarator(spec),
+    AnnotationDeclarator by PatronAnnotationDeclarator(spec) {
 
     fun code(block: CodeBuilderBlock) {
         CodeBuilder()
@@ -39,6 +32,10 @@ open class FunctionBuilder(private val spec: PatronFunctionSpec) :
 
     fun returning(block: FunctionReturnBlock) {
         Return().apply(block)
+    }
+
+    fun extend(className: ClassName) {
+        spec.extend(className)
     }
 
     inner class Return : Returner by PatronReturner(
